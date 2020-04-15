@@ -14,14 +14,13 @@ export default {
         if (err.response.status === 401) {
           /* eslint-disable no-console */
           console.log("401: Token is now invalid");
-          store.dispatch('logout')
+          store.dispatch('refresh_token')
           //.then(() => {
-            router.push({ name: 'login'});
+            router.push({ name: 'home'});
           //})
         }
         throw err;
       });
-
     });
   }
 }

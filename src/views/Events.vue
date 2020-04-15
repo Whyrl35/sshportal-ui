@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <Navbar/>
-    <Home/>
+    <EventList/>
   </div>
 </template>
 <script>
   import Navbar from '@/components/Navbar.vue';
-  import Home from '@/components/Home.vue';
+  import EventList from '@/components/EventList.vue';
   export default {
     name: 'home',
     components: {
       Navbar,
-      Home,
+      EventList,
     },
   }
 </script>

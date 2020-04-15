@@ -25,6 +25,19 @@ if (token) {
   Vue.prototype.$http.defaults.headers.common['Authorization'] = "Bearer " + token
 }
 
+//Check for 401 response and redirect if needed
+Vue.prototype.$http.interceptors.response.use(undefined, function (err) {
+  return new Promise(function () {
+    if (err.response.status === 401) {
+      /* eslint-disable no-console */
+      console.log("401: Token is now invalid, try to refresh it");
+      store.dispatch('refresh_token')
+      //router.push({ name: 'login'});
+    }
+    throw err;
+  });
+});
+
 new Vue({
   router,
   store,
