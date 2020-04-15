@@ -6,10 +6,29 @@
     </mdb-navbar-brand>
     <mdb-navbar-toggler>
       <mdb-navbar-nav>
-        <router-link :to="{ name: 'home' }"><mdb-nav-item tag="a">Home</mdb-nav-item></router-link>
-        <router-link :to="{ name: 'home' }"><mdb-nav-item tag="a">Users</mdb-nav-item></router-link>
-        <router-link :to="{ name: 'home' }"><mdb-nav-item tag="a">Keys</mdb-nav-item></router-link>
-        <router-link :to="{ name: 'home' }"><mdb-nav-item tag="a">Hosts</mdb-nav-item></router-link>
+        <mdb-dropdown tag="li" class="nav-item">
+          <mdb-dropdown-toggle tag="a" navLink color="unique-color-dark" slot="toggle" waves-fixed>Users</mdb-dropdown-toggle>
+          <mdb-dropdown-menu>
+            <mdb-dropdown-item ><mdb-icon icon="user" style="width:24px"/><router-link :to="{ name: 'home' }">Users</router-link></mdb-dropdown-item>
+            <mdb-dropdown-item ><mdb-icon icon="users" style="width: 24px"/><router-link :to="{ name: 'home' }">Groups</router-link></mdb-dropdown-item>
+            <mdb-dropdown-item ><mdb-icon icon="user-tag" style="width: 24px"/><router-link :to="{ name: 'home' }">Roles</router-link></mdb-dropdown-item>
+            <mdb-dropdown-item ><mdb-icon icon="key" style="width: 24px"/><router-link :to="{ name: 'home' }">Keys</router-link></mdb-dropdown-item>
+          </mdb-dropdown-menu>
+        </mdb-dropdown>
+        <mdb-dropdown tag="li" class="nav-item">
+          <mdb-dropdown-toggle tag="a" navLink color="unique-color-dark" slot="toggle" waves-fixed>Keys</mdb-dropdown-toggle>
+          <mdb-dropdown-menu>
+            <mdb-dropdown-item ><mdb-icon icon="key"  style="width:24px"/><router-link :to="{ name: 'home' }">Keys</router-link></mdb-dropdown-item>
+            <mdb-dropdown-item ><mdb-icon icon="user-lock"  style="width:24px" /><router-link :to="{ name: 'home' }">User keys</router-link></mdb-dropdown-item>
+          </mdb-dropdown-menu>
+        </mdb-dropdown>
+        <mdb-dropdown tag="li" class="nav-item">
+          <mdb-dropdown-toggle tag="a" navLink color="unique-color-dark" slot="toggle" waves-fixed>Hosts</mdb-dropdown-toggle>
+          <mdb-dropdown-menu>
+            <mdb-dropdown-item ><mdb-icon icon="server"  style="width:24px"/><router-link :to="{ name: 'home' }">Hosts</router-link></mdb-dropdown-item>
+            <mdb-dropdown-item ><mdb-icon icon="layer-group"  style="width:24px" /><router-link :to="{ name: 'home' }">Groups</router-link></mdb-dropdown-item>
+          </mdb-dropdown-menu>
+        </mdb-dropdown>
         <router-link :to="{ name: 'home' }"><mdb-nav-item tag="a">Acls</mdb-nav-item></router-link>
         <router-link :to="{ name: 'home' }"><mdb-nav-item tag="a">Sessions</mdb-nav-item></router-link>
         <router-link :to="{ name: 'events' }"><mdb-nav-item tag="a">Events</mdb-nav-item></router-link>

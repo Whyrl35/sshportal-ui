@@ -6,7 +6,7 @@
           <h1>Events list</h1>
         </mdb-col>
         <mdb-col xl="12" lg="12" md="12" class="mt-4">
-          <mdb-datatable-2 v-model="data" :columns="columns" :rows="rows" striped bordered arrows/>
+          <mdb-datatable :data="tableData" v-model="tableData" striped bordered arrows :display="3" />
         </mdb-col>
       </mdb-row>
     </section>
@@ -14,46 +14,53 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-            columns: [],
-            rows: []
-    };
-  },
-  computed: {
     data() {
-      return {
-            columns: this.columns,
-            rows: this.rows
+        return {
+            tableData: {
+                columns: [],
+                rows: []
+            },
+        }
+    },
+    comupted: {
+        tableData: function() {
+            return this.tableData;
+        },
+    },
+    methods: {
+      filterData(dataArr, keys) {
+        let data = dataArr.map(entry => {
+          let filteredEntry = {};
+          keys.forEach(key => {
+            if (key in entry) {
+              filteredEntry[key] = entry[key];
+            }
+          });
+          return filteredEntry;
+        });
+        return data;
       }
-    }
-  },
-  mounted() {
-    let col = [
-      {
-        label: "Name",
-        field: "name",
-        sort: true
-      },
-      {
-        label: "Position",
-        field: "position",
-        sort: true
-      }
-    ];
-    let rows = (rows = [
-      {
-        name: "Tiger Nixon",
-        position: "System Architect"
-      },
-      {
-        name: "Garrett Winters",
-        position: "Accountant"
-      }
-    ]);
+    },
+    mounted() {
+        this.$http
+        .get(process.env.VUE_APP_API_URL + "/v1/events")
+        .then(response => {
+            let data = response.data
+            let keys = Object.keys(data[0])
+            let entries = this.filterData(data, keys);
 
-    this.columns = col;
-    this.rows = rows;
-  }
+            keys.map(key =>
+                this.tableData.columns.push( {
+                    label: key.toUpperCase(),
+                    field: key,
+                    sort: true
+                }))
+            entries.map(entry => this.tableData.rows.push(entry));
+        })
+        .catch(err => {
+            this.movies = []
+            console.log(err);
+        });
+    }
 };
 </script>

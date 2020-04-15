@@ -15,14 +15,6 @@
               </div>
             </div>
             <mdb-card-body>
-                <mdb-navbar color="primary-color" class="lighten-3">
-                    <mdb-navbar-nav nav center>
-                    <mdb-nav-item href="#" anchorClass="white-text"><mdb-icon icon="user" /> Users</mdb-nav-item>
-                    <mdb-nav-item href="#" anchorClass="white-text"><mdb-icon icon="users" /> Groups</mdb-nav-item>
-                    <mdb-nav-item href="#" anchorClass="white-text"><mdb-icon icon="user-tag" /> Roles</mdb-nav-item>
-                    <mdb-nav-item href="#" anchorClass="white-text"><mdb-icon icon="key" /> Keys</mdb-nav-item>
-                    </mdb-navbar-nav>
-                </mdb-navbar>
             </mdb-card-body>
           </mdb-card>
         </mdb-col>
@@ -38,12 +30,6 @@
               </div>
             </div>
             <mdb-card-body>
-                <mdb-navbar color="warning-color" class="lighten-3">
-                    <mdb-navbar-nav nav center>
-                    <mdb-nav-item href="#" anchorClass="white-text"><mdb-icon icon="key" /> Keys</mdb-nav-item>
-                    <mdb-nav-item href="#" anchorClass="white-text"><mdb-icon icon="user-lock" /> User keys</mdb-nav-item>
-                    </mdb-navbar-nav>
-                </mdb-navbar>
             </mdb-card-body>
           </mdb-card>
         </mdb-col>
@@ -59,12 +45,6 @@
               </div>
             </div>
             <mdb-card-body>
-                <mdb-navbar color="light-blue" class="lighten-1">
-                    <mdb-navbar-nav nav center>
-                    <mdb-nav-item href="#" anchorClass="white-text"><mdb-icon icon="server" /> Host</mdb-nav-item>
-                    <mdb-nav-item href="#" anchorClass="white-text"><mdb-icon icon="layer-group" /> Groups</mdb-nav-item>
-                    </mdb-navbar-nav>
-                </mdb-navbar>
             </mdb-card-body>
           </mdb-card>
         </mdb-col>
@@ -80,11 +60,6 @@
               </div>
             </div>
             <mdb-card-body>
-                <mdb-navbar color="red" class="accent-2">
-                    <mdb-navbar-nav nav center>
-                    <mdb-nav-item href="#" anchorClass="white-text"><mdb-icon icon="shield-alt" /> Acls</mdb-nav-item>
-                    </mdb-navbar-nav>
-                </mdb-navbar>
             </mdb-card-body>
           </mdb-card>
         </mdb-col>
@@ -100,13 +75,6 @@
               </div>
             </div>
             <mdb-card-body>
-              <div>
-              </div>
-                <mdb-navbar color="default-color">
-                    <mdb-navbar-nav nav center>
-                    <mdb-nav-item href="#" anchorClass="white-text"><mdb-icon icon="wifi" /> Session</mdb-nav-item>
-                    </mdb-navbar-nav>
-                </mdb-navbar>
             </mdb-card-body>
           </mdb-card>
         </mdb-col>
@@ -122,11 +90,6 @@
               </div>
             </div>
             <mdb-card-body>
-                <mdb-navbar color="secondary-color-dark">
-                    <mdb-navbar-nav nav center>
-                    <mdb-nav-item :to="{ name: 'events' }" href="#" anchorClass="white-text"><mdb-icon icon="list-alt" /> Events</mdb-nav-item>
-                    </mdb-navbar-nav>
-                </mdb-navbar>
             </mdb-card-body>
           </mdb-card>
         </mdb-col>
