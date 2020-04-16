@@ -6,7 +6,7 @@
           <h1>Events list</h1>
         </mdb-col>
         <mdb-col xl="12" lg="12" md="12" class="mt-4">
-          <mdb-datatable :data="tableData" v-model="tableData" striped bordered arrows :display="3" />
+          <mdb-datatable :data="tableData" v-model="tableData" striped bordered arrows :display="3" :tfoot="false" />
         </mdb-col>
       </mdb-row>
     </section>
@@ -45,7 +45,7 @@ export default {
         this.$http
         .get(process.env.VUE_APP_API_URL + "/v1/events")
         .then(response => {
-            let data = response.data
+            let data = response.data.reverse()
             let keys = Object.keys(data[0])
             let entries = this.filterData(data, keys);
 

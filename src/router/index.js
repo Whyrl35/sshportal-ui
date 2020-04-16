@@ -4,6 +4,7 @@ import store from '../store'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Events from '../views/Events.vue'
+import Sessions from '../views/Sessions.vue'
 
 Vue.use(VueRouter)
 
@@ -25,6 +26,11 @@ Vue.use(VueRouter)
     path: '/events',
     name: 'events',
     component: Events
+  },
+  {
+    path: '/sessions',
+    name: 'sessions',
+    component: Sessions
   },
 ]
 
