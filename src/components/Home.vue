@@ -3,7 +3,7 @@
   <section id="dashboard" class="p-5">
     <section>
       <mdb-row>
-        <mdb-col xl="4" lg="6" md="12" class="mb-r">
+        <mdb-col xl="2" lg="4" md="12" class="mb-r">
           <mdb-card cascade class="cascading-admin-card">
             <div class="admin-up">
               <mdb-icon icon="user" class="primary-color" />
@@ -16,9 +16,12 @@
             </div>
             <mdb-card-body>
             </mdb-card-body>
+            <mdb-card-footer class="small primary-color text-center white-text border-0 hover">
+              <router-link :to="{ name: 'home' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
+            </mdb-card-footer>
           </mdb-card>
         </mdb-col>
-        <mdb-col xl="4" lg="6"  md="12" class="mb-r">
+        <mdb-col xl="2" lg="4"  md="12" class="mb-r">
           <mdb-card cascade class="cascading-admin-card">
             <div class="admin-up">
               <mdb-icon icon="key" class="warning-color" />
@@ -31,9 +34,12 @@
             </div>
             <mdb-card-body>
             </mdb-card-body>
+            <mdb-card-footer class="small warning-color text-center white-text border-0 hover">
+              <router-link :to="{ name: 'home' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
+            </mdb-card-footer>
           </mdb-card>
         </mdb-col>
-        <mdb-col xl="4" lg="6"  md="12" class="mb-r">
+        <mdb-col xl="2" lg="4"  md="12" class="mb-r">
           <mdb-card cascade class="cascading-admin-card">
             <div class="admin-up">
               <mdb-icon icon="server" class="light-blue lighten-1" />
@@ -46,9 +52,12 @@
             </div>
             <mdb-card-body>
             </mdb-card-body>
+            <mdb-card-footer class="small light-blue lighten-1 text-center white-text border-0 hover">
+              <router-link :to="{ name: 'home' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
+            </mdb-card-footer>
           </mdb-card>
         </mdb-col>
-        <mdb-col xl="4" lg="6"  md="12" class="mb-r">
+        <mdb-col xl="2" lg="4"  md="12" class="mb-r">
           <mdb-card cascade class="cascading-admin-card">
             <div class="admin-up">
               <mdb-icon icon="shield-alt" class="red accent-2" />
@@ -61,9 +70,12 @@
             </div>
             <mdb-card-body>
             </mdb-card-body>
+            <mdb-card-footer class="small red accent-2 text-center white-text border-0 hover">
+              <router-link :to="{ name: 'home' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
+            </mdb-card-footer>
           </mdb-card>
         </mdb-col>
-        <mdb-col xl="4" lg="6"  md="12" class="mb-r">
+        <mdb-col xl="2" lg="4"  md="12" class="mb-r">
           <mdb-card cascade class="cascading-admin-card">
             <div class="admin-up">
               <mdb-icon icon="wifi" class="default-color" />
@@ -76,9 +88,12 @@
             </div>
             <mdb-card-body>
             </mdb-card-body>
+            <mdb-card-footer class="small default-color lighten-1 text-center white-text border-0 hover">
+              <router-link :to="{ name: 'sessions' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
+            </mdb-card-footer>
           </mdb-card>
         </mdb-col>
-        <mdb-col xl="4" lg="6"  md="12" class="mb-r">
+        <mdb-col xl="2" lg="4"  md="12" class="mb-r">
           <mdb-card cascade class="cascading-admin-card">
             <div class="admin-up">
               <mdb-icon icon="list-alt" class="secondary-color-dark" />
@@ -91,6 +106,9 @@
             </div>
             <mdb-card-body>
             </mdb-card-body>
+            <mdb-card-footer class="small secondary-color-dark lighten-1 text-center white-text border-0 hover">
+              <router-link :to="{ name: 'events' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
+            </mdb-card-footer>
           </mdb-card>
         </mdb-col>
       </mdb-row>
@@ -164,7 +182,7 @@ export default {
             this.events = response.data.events.count
         }).catch(err => {
             this.$bvToast.toast(err.message, {
-                title: "Error when getting events",
+                title: "Error when getting statistics",
                 autoHideDelay: 15000,
                 variant: "danger",
                 solid: true,

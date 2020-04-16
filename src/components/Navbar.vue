@@ -1,5 +1,5 @@
 <template>
-  <mdb-navbar color="unique-color-dark" dark class="" position="top" expand="large">
+  <mdb-navbar color="unique-color" dark class="" position="top" expand="large">
     <mdb-navbar-brand href="/" :to="{ name: 'home'}">
       <img src="~/../assets/ssh-logo.png" style="width: 32px; height: 32px" class="d-inline-block align-top mr-1" alt="sshportal">
       sshportal-ui

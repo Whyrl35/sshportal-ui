@@ -6,7 +6,19 @@
           <h1>Events list</h1>
         </mdb-col>
         <mdb-col xl="12" lg="12" md="12" class="mt-4">
-          <mdb-datatable :data="tableData" v-model="tableData" striped bordered arrows :display="3" :tfoot="false" />
+          <mdb-datatable 
+            :data="tableData" 
+            striped
+            bordered
+            responsive
+            hover
+            hoverColor="red"
+            selectColor="red"
+            :selected=2
+            :borderless="true"
+            :display="3"
+            :tfoot="false"
+          />
         </mdb-col>
       </mdb-row>
     </section>
@@ -58,8 +70,14 @@ export default {
             entries.map(entry => this.tableData.rows.push(entry));
         })
         .catch(err => {
-            this.movies = []
             console.log(err);
+            this.$bvToast.toast(err.message, {
+                title: "Error when getting events",
+                autoHideDelay: 15000,
+                variant: "danger",
+                solid: true,
+                appendToast: true
+            });
         });
     }
 };
