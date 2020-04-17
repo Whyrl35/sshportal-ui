@@ -1,6 +1,6 @@
 <template>
   <div>
-    <mdb-modal  position="bottom" fullHeight direction="bottom" :show="modal" @close="modal = false" info>
+    <mdb-modal size="lg" :show="modal" @close="modal = false" info>
       <mdb-modal-header>
         <mdb-modal-title>Session details</mdb-modal-title>
       </mdb-modal-header>
