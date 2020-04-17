@@ -3,7 +3,7 @@
   <section id="dashboard" class="p-5">
     <section>
       <mdb-row>
-        <mdb-col xl="2" lg="4" md="12" class="mb-r">
+        <mdb-col xl="3" lg="4" md="6" sm="12" class="mb-r">
           <mdb-card cascade class="cascading-admin-card">
             <div class="admin-up">
               <mdb-icon icon="user" class="primary-color" />
@@ -21,7 +21,7 @@
             </mdb-card-footer>
           </mdb-card>
         </mdb-col>
-        <mdb-col xl="2" lg="4"  md="12" class="mb-r">
+        <mdb-col xl="3" lg="4"  md="6" sm="12" class="mb-r">
           <mdb-card cascade class="cascading-admin-card">
             <div class="admin-up">
               <mdb-icon icon="key" class="warning-color" />
@@ -39,7 +39,7 @@
             </mdb-card-footer>
           </mdb-card>
         </mdb-col>
-        <mdb-col xl="2" lg="4"  md="12" class="mb-r">
+        <mdb-col xl="3" lg="4" md="6" sm="12" class="mb-r">
           <mdb-card cascade class="cascading-admin-card">
             <div class="admin-up">
               <mdb-icon icon="server" class="light-blue lighten-1" />
@@ -57,7 +57,7 @@
             </mdb-card-footer>
           </mdb-card>
         </mdb-col>
-        <mdb-col xl="2" lg="4"  md="12" class="mb-r">
+        <mdb-col xl="3" lg="4" md="6" sm="12" class="mb-r">
           <mdb-card cascade class="cascading-admin-card">
             <div class="admin-up">
               <mdb-icon icon="shield-alt" class="red accent-2" />
@@ -75,7 +75,7 @@
             </mdb-card-footer>
           </mdb-card>
         </mdb-col>
-        <mdb-col xl="2" lg="4"  md="12" class="mb-r">
+        <mdb-col xl="3" lg="4" md="6" sm="12" class="mb-r">
           <mdb-card cascade class="cascading-admin-card">
             <div class="admin-up">
               <mdb-icon icon="wifi" class="default-color" />
@@ -93,7 +93,7 @@
             </mdb-card-footer>
           </mdb-card>
         </mdb-col>
-        <mdb-col xl="2" lg="4"  md="12" class="mb-r">
+        <mdb-col xl="3" lg="4" md="6" sm="12" class="mb-r">
           <mdb-card cascade class="cascading-admin-card">
             <div class="admin-up">
               <mdb-icon icon="list-alt" class="secondary-color-dark" />

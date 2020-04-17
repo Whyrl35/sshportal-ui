@@ -1,6 +1,6 @@
 <template>
   <div>
-    <mdb-modal side position="bottom" fullHeight direction="right" :show="modal" @close="modal = false" info>
+    <mdb-modal  position="bottom" fullHeight direction="bottom" :show="modal" @close="modal = false" info>
       <mdb-modal-header>
         <mdb-modal-title>Session details</mdb-modal-title>
       </mdb-modal-header>
@@ -25,13 +25,13 @@
               <tr>
                 <th>User info</th>
                 <td>
-                    <pre style="height:150px;overflow:auto;">{{ session.user | pretty }}</pre>
+                    <pre style="height:150px;overflow:auto;">{{ session.user }}</pre>
                 </td>
               </tr>
               <tr>
                 <th>Host info</th>
                 <td>
-                  <pre style="height:150px;overflow:auto;text-overflow:ellipsis;white-space:pre-wrap;">{{ session.host | pretty }}</pre>
+                  <pre style="height:150px;overflow:auto;text-overflow:ellipsis;white-space:pre-wrap;">{{ session.host }}</pre>
                 </td>
               </tr>
             </mdb-tbl-body>
@@ -85,7 +85,8 @@ export default {
       },
       modal: false,
       session: {
-        status_color: ''
+        status_color: '',
+        user: {}
       }
     };
   },
@@ -99,7 +100,6 @@ export default {
       this.$http
       .get(process.env.VUE_APP_API_URL + "/v1/session/" + this.tableData.rows[row]['id'])
       .then(response => {
-        console.log(response)
         let data = response.data
         this.session = data
         this.session.status_color = data.status == "closed" ? "success" : "warning"
