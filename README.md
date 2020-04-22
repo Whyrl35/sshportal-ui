@@ -1,24 +1,6 @@
 # sshportal-ui
 
-## Project setup
-```
-yarn install
-```
+![build-deploy](https://github.com/Whyrl35/sshportal-ui/workflows/build-deploy/badge.svg)
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+A real readme will come soon...
+This is still in heavy development and not ready at all for now
