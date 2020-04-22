@@ -29,7 +29,7 @@
             <mdb-dropdown-item ><mdb-icon icon="layer-group"  style="width:24px" /><router-link :to="{ name: 'home' }">Groups</router-link></mdb-dropdown-item>
           </mdb-dropdown-menu>
         </mdb-dropdown>
-        <router-link :to="{ name: 'home' }"><mdb-nav-item tag="a">Acls</mdb-nav-item></router-link>
+        <router-link :to="{ name: 'acls' }"><mdb-nav-item tag="a">Acls</mdb-nav-item></router-link>
         <router-link :to="{ name: 'sessions' }"><mdb-nav-item tag="a">Sessions</mdb-nav-item></router-link>
         <router-link :to="{ name: 'events' }"><mdb-nav-item tag="a">Events</mdb-nav-item></router-link>
         <router-link :to="{ name: 'home' }"><mdb-nav-item tag="a">Settings</mdb-nav-item></router-link>

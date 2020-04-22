@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Events from '../views/Events.vue'
 import Sessions from '../views/Sessions.vue'
+import Acls from '../views/Acls.vue'
 
 Vue.use(VueRouter)
 
@@ -25,12 +26,26 @@ Vue.use(VueRouter)
   {
     path: '/events',
     name: 'events',
-    component: Events
+    component: Events,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/sessions',
     name: 'sessions',
-    component: Sessions
+    component: Sessions,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/acls',
+    name: 'acls',
+    component: Acls,
+    meta: {
+      requiresAuth: true
+    }
   },
 ]
 

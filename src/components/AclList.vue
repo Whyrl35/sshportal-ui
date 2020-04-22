@@ -2,37 +2,37 @@
   <div>
     <mdb-modal size="lg" :show="modal" @close="modal = false" info>
       <mdb-modal-header>
-        <mdb-modal-title>Session details</mdb-modal-title>
+        <mdb-modal-title>Acls details</mdb-modal-title>
       </mdb-modal-header>
       <mdb-modal-body>
         <div class="d-flex flex-row  py-2">
-          <div class="flex-fill px-2"><h3><mdb-badge color="primary" class="w-100 p-2">ID: {{session.id}}</mdb-badge></h3></div>
-          <div class="flex-fill px-2"><h3><mdb-badge :color="session.status_color" class="w-100 p-2">Status: {{session.status}}</mdb-badge></h3></div>
-          <div class="flex-fill px-2"><h3><mdb-badge color="info" class="w-100 p-2">created: {{session.created_humain}}</mdb-badge></h3></div>
-          <div class="flex-fill px-2"><h3><mdb-badge color="info" class="w-100 p-2">duration: {{session.duration_humain}}</mdb-badge></h3></div>
+          <div class="flex-fill px-2"><h3><mdb-badge color="primary" class="w-100 p-2">ID: {{acl.id}}</mdb-badge></h3></div>
+          <div class="flex-fill px-2"><h3><mdb-badge :color="acl.action_color" class="w-100 p-2">Action: {{acl.action}}</mdb-badge></h3></div>
+          <div class="flex-fill px-2"><h3><mdb-badge color="info" class="w-100 p-2">created: {{acl.created_humain}}</mdb-badge></h3></div>
+          <div class="flex-fill px-2"><h3><mdb-badge color="info" class="w-100 p-2">modified: {{acl.updated_humain}}</mdb-badge></h3></div>
         </div>
         <div>
           <mdb-tbl responsive>
             <mdb-tbl-body>
-              <tr>
-                <th class="default-color text-white text-center" style="width: 100px">Last error</th>
-                <td>{{session.err_msg}}</td>
+              <tr >
+                <th class="default-color text-white text-center" style="width: 100px">Weight</th>
+                <td>{{acl.weight}}</td>
               </tr>
               <tr>
                 <th class="default-color text-white text-center">comment</th>
-                <td>{{session.comment}}</td>
+                <td>{{acl.comment}}</td>
               </tr>
               <tr>
-                <th class="default-color text-white text-center">User info</th>
-                <td>
-                    <pre style="height:150px;overflow:auto;">{{ session.user }}</pre>
-                </td>
+                <th :rowspan="users.length + 1" class="default-color text-white text-center">{{ acl.user_groups.name }}<br/>(user group)</th>
+              </tr>
+              <tr v-for="user in users" :key="user.name">
+                <td><router-link :to="{ name: 'acls' }">{{ user.name }}</router-link></td>
               </tr>
               <tr>
-                <th class="default-color text-white text-center">Host info</th>
-                <td>
-                  <pre style="height:150px;overflow:auto;text-overflow:ellipsis;white-space:pre-wrap;">{{ session.host }}</pre>
-                </td>
+                <th :rowspan="hosts.length + 1" class="default-color text-white text-center">{{ acl.host_groups.name }}<br/>(host group)</th>
+              </tr>
+              <tr v-for="host in hosts" :key="host.name">
+                <td><router-link :to="{ name: 'acls' }">{{ host.name }}</router-link></td>
               </tr>
             </mdb-tbl-body>
           </mdb-tbl>
@@ -46,7 +46,7 @@
       <section id="events" class="p-5">
         <mdb-row>
           <mdb-col xl="12" lg="12" md="12" class="mb-r">
-            <h1>Sessions list</h1><small>click on row to view details</small>
+            <h1>Acls list</h1><small>click on row to view details</small>
           </mdb-col>
           <mdb-col xl="12" lg="12" md="12" class="mt-4">
             <!-- scrollY :maxHeight="xxx" -->
@@ -84,11 +84,14 @@ export default {
         rows: []
       },
       modal: false,
-      session: {
-        status_color: '',
-        user: {}
-      }
-    };
+      acl: {
+        host_groups: {},
+        user_groups: {},
+        action_color: 'warning',
+      },
+      users: [],
+      hosts: [],
+    }
   },
   comupted: {
     tableData: function() {
@@ -97,19 +100,23 @@ export default {
   },
   methods: {
     viewDetails(row) {
-      this.$http
-      .get(process.env.VUE_APP_API_URL + "/v1/session/" + this.tableData.rows[row]['id'])
+      // some error here, id not always found, and host not working...
+      this.$http.get(process.env.VUE_APP_API_URL + "/v1/acl/" + this.tableData.rows[row]['id'])
       .then(response => {
-        let data = response.data
-        this.session = data
-        this.session.status_color = data.status == "closed" ? "success" : "warning"
-        this.session.created_humain = this.timeSince(new Date(data.created_at), true)
-        this.session.duration_humain = data.status == "closed" ? this.timeBetween(new Date(data.created_at), new Date(data.updated_at), true) : "still"
-        var original_str = this.session.host.host_key
-        this.session.host.host_key = original_str.substring(0,16)
-        this.session.host.host_key += "..."
-        this.session.host.host_key += original_str.substring(original_str.length - 16)
-        this.modal = true
+        this.acl = response.data
+        this.acl.created_humain = this.timeSince(new Date(response.data.created_at), true)
+        this.acl.updated_humain = this.timeSince(new Date(response.data.updated_at), true)
+        this.acl.action_color = response.data.action == "allow" ? "success" : "danger"
+
+        this.$http.get(process.env.VUE_APP_API_URL + "/v1/usergroup/" + this.acl.user_groups.id).then(response => {
+          this.users = response.data.users
+        })
+        this.$http.get(process.env.VUE_APP_API_URL + "/v1/host_group/" + this.acl.host_groups.id).then(response => {
+          this.hosts = response.data.hosts
+        })
+        this.$nextTick(function () {
+          this.modal = true
+        })
       })
       .catch(err => {
         console.log(err);
@@ -154,68 +161,26 @@ export default {
   },
   mounted() {
     this.$http
-      .get(process.env.VUE_APP_API_URL + "/v1/sessions")
+      .get(process.env.VUE_APP_API_URL + "/v1/acls")
       .then(response => {
         let data = response.data.reverse();
 
         this.tableData.columns.push({ label: "ID", field: "id", sort: true });
-        this.tableData.columns.push({
-          label: "USER",
-          field: "user",
-          sort: true
-        });
-        this.tableData.columns.push({
-          label: "HOST",
-          field: "host",
-          sort: true
-        });
-        this.tableData.columns.push({
-          label: "STATUS",
-          field: "status",
-          sort: true
-        });
-        this.tableData.columns.push({
-          label: "START",
-          field: "start",
-          sort: true
-        });
-        this.tableData.columns.push({
-          label: "DURATION",
-          field: "duration",
-          sort: true
-        });
-        this.tableData.columns.push({
-          label: "ERROR",
-          field: "error",
-          sort: true
-        });
-        this.tableData.columns.push({
-          label: "COMMENT",
-          field: "comment",
-          sort: true
-        });
+        this.tableData.columns.push({ label: "WEIGHT", field: "weight", sort: true });
+        this.tableData.columns.push({ label: "USER GROUP", field: "usergroup", sort: true });
+        this.tableData.columns.push({ label: "HOST GROUP", field: "hostgroup", sort: true });
+        this.tableData.columns.push({ label: "HOST PATTERN", field: "host_pattern", sort: true });
+        this.tableData.columns.push({ label: "ACTION", field: "action", sort: true });
+        this.tableData.columns.push({ label: "UPDATED", field: "updated_at", sort: true });
+        this.tableData.columns.push({ label: "CREATED", field: "created_at", sort: true });
+        this.tableData.columns.push({ label: "COMMENT", field: "comment", sort: true });
 
         for (const item of data) {
-          let user = item["user"]["name"];
-          let host = item["host"] ? item["host"]["name"] ? item["host"]["name"] : "" : "";
-          let duration = "on-going";
-          let start = new Date(item["created_at"]);
-
-          if (item["status"] == "closed") {
-            let end = new Date(item["updated_at"]);
-            duration = this.timeBetween(start, end);
-          }
-
-          this.tableData.rows.push({
-            id: item["id"],
-            user: user,
-            host: host,
-            status: item["status"],
-            start: this.timeSince(start, false),
-            duration: duration.trim(),
-            error: item["err_msg"],
-            comment: item["comment"],
-          });
+          item['usergroup'] = item['user_groups']['name']
+          item['hostgroup'] = item['host_groups']['name']
+          item['updated_at'] = this.timeSince(new Date(item['updated_at']))
+          item['created_at'] = this.timeSince(new Date(item['created_at']))
+          this.tableData.rows.push(item);
         }
       })
       .catch(err => {

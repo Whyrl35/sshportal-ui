@@ -71,7 +71,7 @@
             <mdb-card-body>
             </mdb-card-body>
             <mdb-card-footer class="small red accent-2 text-center white-text border-0 hover">
-              <router-link :to="{ name: 'home' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
+              <router-link :to="{ name: 'acls' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
             </mdb-card-footer>
           </mdb-card>
         </mdb-col>

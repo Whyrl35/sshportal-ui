@@ -19,6 +19,14 @@ export default {
             router.push({ name: 'home'});
           //})
         }
+        if (err.response.status === 422) {
+          /* eslint-disable no-console */
+          console.log("422: Token and RefreshToken are now invalid");
+          store.dispatch('logout')
+          //.then(() => {
+            router.push({ name: 'login'});
+          //})
+        }
         throw err;
       });
     });
