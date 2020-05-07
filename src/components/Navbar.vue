@@ -25,7 +25,7 @@
         <mdb-dropdown tag="li" class="nav-item">
           <mdb-dropdown-toggle tag="a" navLink color="unique-color-dark" slot="toggle" waves-fixed>Hosts</mdb-dropdown-toggle>
           <mdb-dropdown-menu>
-            <mdb-dropdown-item ><mdb-icon icon="server"  style="width:24px"/><router-link :to="{ name: 'home' }">Hosts</router-link></mdb-dropdown-item>
+            <mdb-dropdown-item ><mdb-icon icon="server"  style="width:24px"/><router-link :to="{ name: 'hosts' }">Hosts</router-link></mdb-dropdown-item>
             <mdb-dropdown-item ><mdb-icon icon="layer-group"  style="width:24px" /><router-link :to="{ name: 'home' }">Groups</router-link></mdb-dropdown-item>
           </mdb-dropdown-menu>
         </mdb-dropdown>

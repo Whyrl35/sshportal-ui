@@ -2,36 +2,27 @@
   <div>
     <mdb-modal size="lg" :show="modal" @close="modal = false" info>
       <mdb-modal-header>
-        <mdb-modal-title>Acls details</mdb-modal-title>
+        <mdb-modal-title>Host details</mdb-modal-title>
       </mdb-modal-header>
       <mdb-modal-body>
         <div class="d-flex flex-row  py-2">
-          <div class="flex-fill pr-1"><h3><mdb-badge color="primary" class="w-100 p-2">ID: {{acl.id}}</mdb-badge></h3></div>
-          <div class="flex-fill pr-1"><h3><mdb-badge color="info" class="w-100 p-2">created: {{acl.created_humain}}</mdb-badge></h3></div>
-          <div class="flex-fill"><h3><mdb-badge color="info" class="w-100 p-2">modified: {{acl.updated_humain}}</mdb-badge></h3></div>
+          <div class="flex-fill pr-1"><h3><mdb-badge color="primary" class="w-100 p-2">ID: {{host.id}}</mdb-badge></h3></div>
+          <div class="flex-fill"><h3><mdb-badge color="primary" class="w-100 p-2">Name: {{host.name}}</mdb-badge></h3></div>
         </div>
         <div>
           <mdb-tbl responsive>
             <mdb-tbl-body>
               <tr >
-                <th class="default-color text-white text-center" style="width: 100px">Action</th>
-                <td><h3><mdb-badge :color="acl.action_color" class="">{{acl.action}}</mdb-badge></h3></td>
+                <th class="default-color text-white text-center" style="width: 100px">Url</th>
+                <td>{{host.url}}</td>
               </tr>
               <tr >
-                <th class="default-color text-white text-center" style="width: 100px">Weight</th>
-                <td>{{acl.weight}}</td>
+                <th class="default-color text-white text-center" style="width: 100px">Comment</th>
+                <td>{{host.comment}}</td>
               </tr>
               <tr>
-                <th class="default-color text-white text-center">comment</th>
-                <td>{{acl.comment}}</td>
-              </tr>
-              <tr>
-                <th class="default-color text-white text-center">UserGroup</th>
-                <td><router-link :to="{ name: 'acls' }">{{ acl.user_groups.name }}</router-link></td>
-              </tr>
-              <tr>
-                <th class="default-color text-white text-center">HostGroup</th>
-                <td><a href="#" :to="acls">{{ acl.host_groups.name }}</a></td>
+                <th class="default-color text-white text-center">Hop</th>
+                <td>{{host.hop}}</td>
               </tr>
             </mdb-tbl-body>
           </mdb-tbl>
@@ -45,7 +36,7 @@
       <section id="events" class="p-5">
         <mdb-row>
           <mdb-col xl="12" lg="12" md="12" class="mb-r">
-            <h1>Acls list</h1><small>click on row to view details</small>
+            <h1>Hosts list</h1><small>click on row to view details</small>
           </mdb-col>
           <mdb-col xl="12" lg="12" md="12" class="mt-4">
             <!-- scrollY :maxHeight="xxx" -->
@@ -83,11 +74,7 @@ export default {
         rows: []
       },
       modal: false,
-      acl: {
-        host_groups: {},
-        user_groups: {},
-        action_color: 'warning',
-      },
+      host: {}
     }
   },
   comupted: {
@@ -98,16 +85,10 @@ export default {
   methods: {
     viewDetails(row) {
       // some error here, id not always found, and host not working...
-      this.$http.get(process.env.VUE_APP_API_URL + "/v1/acl/" + this.tableData.rows[row]['id'])
+      this.$http.get(process.env.VUE_APP_API_URL + "/v1/host/" + this.tableData.rows[row]['id'])
       .then(response => {
-        this.acl = response.data
-        this.acl.created_humain = this.timeSince(new Date(response.data.created_at), true)
-        this.acl.updated_humain = this.timeSince(new Date(response.data.updated_at), true)
-        this.acl.action_color = response.data.action == "allow" ? "success" : "danger"
-
-        this.$nextTick(function () {
-          this.modal = true
-        })
+        this.host = response.data
+        this.modal = true
       })
       .catch(err => {
         console.log(err);
@@ -152,23 +133,23 @@ export default {
   },
   mounted() {
     this.$http
-      .get(process.env.VUE_APP_API_URL + "/v1/acls")
+      .get(process.env.VUE_APP_API_URL + "/v1/hosts")
       .then(response => {
         let data = response.data.reverse();
-
+        console.log(data)
         this.tableData.columns.push({ label: "ID", field: "id", sort: true });
-        this.tableData.columns.push({ label: "WEIGHT", field: "weight", sort: true });
-        this.tableData.columns.push({ label: "USER GROUP", field: "usergroup", sort: true });
-        this.tableData.columns.push({ label: "HOST GROUP", field: "hostgroup", sort: true });
-        this.tableData.columns.push({ label: "HOST PATTERN", field: "host_pattern", sort: true });
-        this.tableData.columns.push({ label: "ACTION", field: "action", sort: true });
+        this.tableData.columns.push({ label: "NAME", field: "name", sort: true });
+        this.tableData.columns.push({ label: "URL", field: "url", sort: true });
+        this.tableData.columns.push({ label: "KEY", field: "ssh_key_name", sort: true });
+        this.tableData.columns.push({ label: "GROUP", field: "host_groups_name", sort: true });
         this.tableData.columns.push({ label: "UPDATED", field: "updated_at", sort: true });
         this.tableData.columns.push({ label: "CREATED", field: "created_at", sort: true });
         this.tableData.columns.push({ label: "COMMENT", field: "comment", sort: true });
+        this.tableData.columns.push({ label: "HOP", field: "hop", sort: true });
 
         for (const item of data) {
-          item['usergroup'] = item['user_groups']['name']
-          item['hostgroup'] = item['host_groups']['name']
+          item['ssh_key_name'] = item['ssh_key']['name']
+          item['host_groups_name'] = item['host_groups']['name']
           item['updated_at'] = this.timeSince(new Date(item['updated_at']))
           item['created_at'] = this.timeSince(new Date(item['created_at']))
           this.tableData.rows.push(item);

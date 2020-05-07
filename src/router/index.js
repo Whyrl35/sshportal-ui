@@ -6,6 +6,7 @@ import Login from '../views/Login.vue'
 import Events from '../views/Events.vue'
 import Sessions from '../views/Sessions.vue'
 import Acls from '../views/Acls.vue'
+import Hosts from '../views/Hosts.vue'
 
 Vue.use(VueRouter)
 
@@ -43,6 +44,14 @@ Vue.use(VueRouter)
     path: '/acls',
     name: 'acls',
     component: Acls,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/hosts',
+    name: 'hosts',
+    component: Hosts,
     meta: {
       requiresAuth: true
     }
