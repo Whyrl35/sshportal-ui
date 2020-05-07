@@ -3,4 +3,5 @@
 ![build-deploy](https://github.com/Whyrl35/sshportal-ui/workflows/build-deploy/badge.svg)
 
 A real readme will come soon...
-This is still in heavy development and not ready at all for now
+
+:construction: FOR NOW THIS PROJECT IS IN HEAVY DEVELOPMENT AND NOT READY TO BE USED.
