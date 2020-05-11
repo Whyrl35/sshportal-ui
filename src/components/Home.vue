@@ -1,5 +1,5 @@
 <template>
-<div style="padding-top: 60px">
+<div>
   <section id="dashboard" class="p-5">
     <section>
       <mdb-row>
@@ -78,7 +78,7 @@
         <mdb-col xl="3" lg="4" md="6" sm="12" class="mb-r">
           <mdb-card cascade class="cascading-admin-card">
             <div class="admin-up">
-              <mdb-icon icon="wifi" class="default-color" />
+              <mdb-icon icon="ethernet" class="default-color" />
               <div class="data">
                 <h2 class="grey-text">Sessions</h2>
                 <h4>

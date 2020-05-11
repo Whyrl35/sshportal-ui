@@ -3,12 +3,9 @@ import App from './App.vue'
 import BootstrapVue from 'bootstrap-vue'
 import Axios from 'axios'
 import store from './store'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-import 'bootstrap-css-only/css/bootstrap.min.css'
+import router from './router'
 import 'mdbvue/lib/css/mdb.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
-import router from './router'
 import * as mdbvue from 'mdbvue'
 
 //Load all Material Design Bootstrap component

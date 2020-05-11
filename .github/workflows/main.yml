@@ -36,6 +36,10 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: dist
+      - name: test path
+        run: |
+          ls
+          ls dist
       - name: Push to Docker Hub
         uses: docker/build-push-action@v1
         with:

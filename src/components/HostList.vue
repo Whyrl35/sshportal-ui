@@ -1,11 +1,11 @@
 <template>
   <div>
     <mdb-modal size="lg" :show="modal" @close="modal = false" info>
-      <mdb-modal-header>
+      <mdb-modal-header color="elegant-color-dark">
         <mdb-modal-title>Host details</mdb-modal-title>
       </mdb-modal-header>
       <mdb-modal-body>
-        <div class="d-flex flex-row  py-2">
+        <div class="d-flex flex-row pb-3">
           <div class="flex-fill pr-1"><h3><mdb-badge color="primary" class="w-100 p-2">ID: {{host.id}}</mdb-badge></h3></div>
           <div class="flex-fill"><h3><mdb-badge color="primary" class="w-100 p-2">Name: {{host.name}}</mdb-badge></h3></div>
         </div>
@@ -13,15 +13,15 @@
           <mdb-tbl responsive>
             <mdb-tbl-body>
               <tr >
-                <th class="default-color text-white text-center" style="width: 100px">Url</th>
+                <th class="elegant-color text-white text-center" style="width: 100px">Url</th>
                 <td>{{host.url}}</td>
               </tr>
               <tr >
-                <th class="default-color text-white text-center" style="width: 100px">Comment</th>
+                <th class="elegant-color text-white text-center" style="width: 100px">Comment</th>
                 <td>{{host.comment}}</td>
               </tr>
               <tr>
-                <th class="default-color text-white text-center">Hop</th>
+                <th class="elegant-color text-white text-center">Hop</th>
                 <td>{{host.hop}}</td>
               </tr>
             </mdb-tbl-body>

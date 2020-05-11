@@ -1,11 +1,11 @@
 <template>
   <div>
     <mdb-modal size="lg" :show="modal" @close="modal = false" info>
-      <mdb-modal-header>
+      <mdb-modal-header color="elegant-color-dark">
         <mdb-modal-title>Acls details</mdb-modal-title>
       </mdb-modal-header>
       <mdb-modal-body>
-        <div class="d-flex flex-row  py-2">
+        <div class="d-flex flex-row  pb-3">
           <div class="flex-fill pr-1"><h3><mdb-badge color="primary" class="w-100 p-2">ID: {{acl.id}}</mdb-badge></h3></div>
           <div class="flex-fill pr-1"><h3><mdb-badge color="info" class="w-100 p-2">created: {{acl.created_humain}}</mdb-badge></h3></div>
           <div class="flex-fill"><h3><mdb-badge color="info" class="w-100 p-2">modified: {{acl.updated_humain}}</mdb-badge></h3></div>
@@ -14,23 +14,23 @@
           <mdb-tbl responsive>
             <mdb-tbl-body>
               <tr >
-                <th class="default-color text-white text-center" style="width: 100px">Action</th>
+                <th class="elegant-color text-white text-center" style="width: 100px">Action</th>
                 <td><h3><mdb-badge :color="acl.action_color" class="">{{acl.action}}</mdb-badge></h3></td>
               </tr>
               <tr >
-                <th class="default-color text-white text-center" style="width: 100px">Weight</th>
+                <th class="elegant-color text-white text-center" style="width: 100px">Weight</th>
                 <td>{{acl.weight}}</td>
               </tr>
               <tr>
-                <th class="default-color text-white text-center">comment</th>
+                <th class="elegant-color text-white text-center">comment</th>
                 <td>{{acl.comment}}</td>
               </tr>
               <tr>
-                <th class="default-color text-white text-center">UserGroup</th>
+                <th class="elegant-color text-white text-center">UserGroup</th>
                 <td><router-link :to="{ name: 'acls' }">{{ acl.user_groups.name }}</router-link></td>
               </tr>
               <tr>
-                <th class="default-color text-white text-center">HostGroup</th>
+                <th class="elegant-color text-white text-center">HostGroup</th>
                 <td><a href="#" :to="acls">{{ acl.host_groups.name }}</a></td>
               </tr>
             </mdb-tbl-body>

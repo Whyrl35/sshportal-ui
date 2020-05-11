@@ -7,33 +7,6 @@
       </mdb-navbar-brand>
       <mdb-navbar-toggler>
         <mdb-navbar-nav>
-          <mdb-dropdown tag="li" class="nav-item">
-            <mdb-dropdown-toggle tag="a" navLink color="unique-color-dark" slot="toggle" waves-fixed>Users</mdb-dropdown-toggle>
-            <mdb-dropdown-menu>
-              <mdb-dropdown-item ><mdb-icon icon="user" style="width:24px"/><router-link :to="{ name: 'home' }">Users</router-link></mdb-dropdown-item>
-              <mdb-dropdown-item ><mdb-icon icon="users" style="width: 24px"/><router-link :to="{ name: 'home' }">Groups</router-link></mdb-dropdown-item>
-              <mdb-dropdown-item ><mdb-icon icon="user-tag" style="width: 24px"/><router-link :to="{ name: 'home' }">Roles</router-link></mdb-dropdown-item>
-              <mdb-dropdown-item ><mdb-icon icon="key" style="width: 24px"/><router-link :to="{ name: 'home' }">Keys</router-link></mdb-dropdown-item>
-            </mdb-dropdown-menu>
-          </mdb-dropdown>
-          <mdb-dropdown tag="li" class="nav-item">
-            <mdb-dropdown-toggle tag="a" navLink color="unique-color-dark" slot="toggle" waves-fixed>Keys</mdb-dropdown-toggle>
-            <mdb-dropdown-menu>
-              <mdb-dropdown-item ><mdb-icon icon="key"  style="width:24px"/><router-link :to="{ name: 'home' }">Keys</router-link></mdb-dropdown-item>
-              <mdb-dropdown-item ><mdb-icon icon="user-lock"  style="width:24px" /><router-link :to="{ name: 'home' }">User keys</router-link></mdb-dropdown-item>
-            </mdb-dropdown-menu>
-          </mdb-dropdown>
-          <mdb-dropdown tag="li" class="nav-item">
-            <mdb-dropdown-toggle tag="a" navLink color="unique-color-dark" slot="toggle" waves-fixed>Hosts</mdb-dropdown-toggle>
-            <mdb-dropdown-menu>
-              <mdb-dropdown-item ><mdb-icon icon="server"  style="width:24px"/><router-link :to="{ name: 'hosts' }">Hosts</router-link></mdb-dropdown-item>
-              <mdb-dropdown-item ><mdb-icon icon="layer-group"  style="width:24px" /><router-link :to="{ name: 'home' }">Groups</router-link></mdb-dropdown-item>
-            </mdb-dropdown-menu>
-          </mdb-dropdown>
-          <router-link :to="{ name: 'acls' }"><mdb-nav-item tag="a">Acls</mdb-nav-item></router-link>
-          <router-link :to="{ name: 'sessions' }"><mdb-nav-item tag="a">Sessions</mdb-nav-item></router-link>
-          <router-link :to="{ name: 'events' }"><mdb-nav-item tag="a">Events</mdb-nav-item></router-link>
-          <router-link :to="{ name: 'home' }"><mdb-nav-item tag="a">Settings</mdb-nav-item></router-link>
         </mdb-navbar-nav>
         <mdb-navbar-nav right>
           <span v-if="isLoggedIn">
@@ -50,22 +23,90 @@
     </mdb-navbar>
     <!--./NavBar-->
     <!-- Sidebar -->
-    <div class="sidebar-fixed position-fixed unique-color-dark">
-      <a class="logo-wrapper"><img src="./assets/ssh-logo2.jpg" class="img-fluid" alt="sshportal"></a>
-      <mdb-list-group class="list-group-flush unique-color-dark" flush>
-        <router-link to="/" @click.native="activeItem = 1">
-          <mdb-list-group-item
-            :action="true"
-            :class="activeItem === 1 && 'active unique-color'"
-            icon="chart-pie">Home</mdb-list-group-item>
-        </router-link>
-        <router-link to="/profile" @click.native="activeItem = 2">
-          <mdb-list-group-item
-            :action="true"
-            :class="activeItem === 2 && 'active unique-color'"
-            icon="user">Profile</mdb-list-group-item>
-        </router-link>
-      </mdb-list-group>
+    <div class="sidebar-fixed position-fixed elegant-color">
+      <div class="logo"><a><img src="./assets/ssh-logo2.jpg" class="img-fluid p-1" alt="sshportal"></a></div>
+      <div class="sidemenu">
+        <mdb-list-group class="unique-color-dark" flush>
+          <router-link to="/" @click.native="activeItem = 1">
+            <mdb-list-group-item
+              :action="true"
+              :class="activeItem === 1 && 'small text-uppercase active' || 'text-uppercase small'"
+              icon="home">Home</mdb-list-group-item>
+          </router-link>
+          <mdb-list-group-item class="disabled pt-4 font-weight-bold small text-uppercase">Users</mdb-list-group-item>
+          <router-link to="/users" @click.native="activeItem = 4">
+            <mdb-list-group-item
+              :action="true"
+              :class="activeItem === 4 && 'small text-uppercase active' || 'text-uppercase small'"
+              icon="user">Users</mdb-list-group-item>
+          </router-link>
+          <router-link to="/groups" @click.native="activeItem = 5">
+            <mdb-list-group-item
+              :action="true"
+              :class="activeItem === 5 && 'small text-uppercase active' || 'text-uppercase small'"
+              icon="users">Groups</mdb-list-group-item>
+          </router-link>
+          <router-link to="/roles" @click.native="activeItem = 6">
+            <mdb-list-group-item
+              :action="true"
+              :class="activeItem === 6 && 'small text-uppercase active' || 'text-uppercase small'"
+              icon="user-tag">Roles</mdb-list-group-item>
+          </router-link>
+          <mdb-list-group-item class="disabled pt-4 font-weight-bold small text-uppercase">Keys</mdb-list-group-item>
+          <router-link to="/keys" @click.native="activeItem = 7">
+            <mdb-list-group-item
+              :action="true"
+              :class="activeItem === 7 && 'small text-uppercase active' || 'text-uppercase small'"
+              icon="key">Keys</mdb-list-group-item>
+          </router-link>
+          <router-link to="/userkeys" @click.native="activeItem = 8">
+            <mdb-list-group-item
+              :action="true"
+              :class="activeItem === 8 && 'small text-uppercase active' || 'text-uppercase small'"
+              icon="user-lock">User Keys</mdb-list-group-item>
+          </router-link>
+          <mdb-list-group-item class="disabled pt-4 font-weight-bold small text-uppercase">Hosts</mdb-list-group-item>
+          <router-link to="/hosts" @click.native="activeItem = 9">
+            <mdb-list-group-item
+              :action="true"
+              :class="activeItem === 9 && 'small text-uppercase active' || 'text-uppercase small'"
+              icon="server">Hosts</mdb-list-group-item>
+          </router-link>
+          <router-link to="/hostgroups" @click.native="activeItem = 10">
+            <mdb-list-group-item
+              :action="true"
+              :class="activeItem === 10 && 'small text-uppercase active' || 'text-uppercase small'"
+              icon="layer-group">Host Groups</mdb-list-group-item>
+          </router-link>
+          <mdb-list-group-item class="disabled pt-4 font-weight-bold small text-uppercase">Security</mdb-list-group-item>
+          <router-link to="/acls" @click.native="activeItem = 11">
+            <mdb-list-group-item
+              :action="true"
+              :class="activeItem === 11 && 'small text-uppercase active' || 'text-uppercase small'"
+              icon="shield-alt">Acls</mdb-list-group-item>
+          </router-link>
+          <mdb-list-group-item class="disabled pt-4 font-weight-bold small text-uppercase">Logs</mdb-list-group-item>
+          <router-link to="/sessions" @click.native="activeItem = 12">
+            <mdb-list-group-item
+              :action="true"
+              :class="activeItem === 12 && 'small text-uppercase active' || 'text-uppercase small'"
+              icon="ethernet">Sessions</mdb-list-group-item>
+          </router-link>
+          <router-link to="/events" @click.native="activeItem = 13">
+            <mdb-list-group-item
+              :action="true"
+              :class="activeItem === 13 && 'small text-uppercase active' || 'text-uppercase small'"
+              icon="list-alt">Events</mdb-list-group-item>
+          </router-link>
+          <mdb-list-group-item class="disabled pt-4 font-weight-bold small text-uppercase">Settings</mdb-list-group-item>
+          <router-link to="/settings" @click.native="activeItem = 14">
+            <mdb-list-group-item
+              :action="true"
+              :class="activeItem === 14 && 'small text-uppercase active' || 'text-uppercase small'"
+              icon="cog">Settings</mdb-list-group-item>
+          </router-link>
+        </mdb-list-group>
+      </div>
     </div>
     <!-- /Sidebar  -->
     <main>
@@ -75,20 +116,39 @@
     </main>
   </div>
 </template>
+<style lang="scss">
+  // Import custom SASS variable overrides, or alternatively
+  // define your variable overrides here instead
+  //@import 'assets/custom-vars.scss';
+  $body-bg: #ededee;
 
-<style>
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
-.navbar-light .navbar-brand {
-  margin-left: 15px;
-  color: #2196f3 !important;
-  font-weight: bolder;
-}
+  // Import Bootstrap and BootstrapVue source SCSS files
+  @import '~bootstrap/scss/bootstrap.scss';
+  @import '~bootstrap-vue/src/index.scss';
+  @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
+
+  // General style overrides and custom classes
+  .navbar-light .navbar-brand {
+    margin-left: 15px;
+    color: #2196f3 !important;
+    font-weight: bolder;
+  }
+
+  .logo {
+    height: 72px;
+    background-color: #212121 !important;
+    padding-left: 18px;
+    margin-left: 0;
+    width: 100%
+  }
+
+  .logo img {
+    height: 48px;
+    margin-left: 24px;
+    margin-top: 10px;
+  }
 </style>
-
 <style scoped>
-body {
-  background-color: #ededee;
-}
 
 main {
   background-color: #ededee;
@@ -96,38 +156,42 @@ main {
 
 .flexible-content {
   transition: padding-left 0.3s;
-  padding-left: 270px;
+  padding-left: 220px;
 }
 
 .flexible-navbar {
   transition: padding-left 0.5s;
-  padding-left: 270px;
+  padding-left: 220px;
 }
 
 .sidebar-fixed {
   left: 0;
   top: 0;
   height: 100vh;
-  width: 270px;
+  width: 220px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   z-index: 1050;
-  padding: 1.5rem;
+  padding: 0; /*1.5rem;*/
   padding-top: 0;
-}
-
-.sidebar-fixed .logo-wrapper img {
-  width: 100%;
-  padding: 2.5rem;
+  line-height: 1;
 }
 
 .sidebar-fixed .list-group-item {
   display: block !important;
   transition: background-color 0.3s;
+  background-color: #2E2E2E;
+  color: #fff;
+  border: 0px;
+  border-image-width: 0;
 }
 
 .sidebar-fixed .list-group .active {
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-  border-radius: 5px;
+  border-radius: 0px;
+  background-color: #3E4551;
+}
+.sidebar-fixed .list-group :hover {
+  border-radius: 0px;
+  background-color: #3E4551;
 }
 
 @media (max-width: 1199.98px) {

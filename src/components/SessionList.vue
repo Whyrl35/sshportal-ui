@@ -1,11 +1,11 @@
 <template>
   <div>
     <mdb-modal size="lg" :show="modal" @close="modal = false" info>
-      <mdb-modal-header>
+      <mdb-modal-header class="elegant-color-dark">
         <mdb-modal-title>Session details</mdb-modal-title>
       </mdb-modal-header>
       <mdb-modal-body>
-        <div class="d-flex flex-row  py-2">
+        <div class="d-flex flex-row  pb-3">
           <div class="flex-fill px-2"><h3><mdb-badge color="primary" class="w-100 p-2">ID: {{session.id}}</mdb-badge></h3></div>
           <div class="flex-fill px-2"><h3><mdb-badge :color="session.status_color" class="w-100 p-2">Status: {{session.status}}</mdb-badge></h3></div>
           <div class="flex-fill px-2"><h3><mdb-badge color="info" class="w-100 p-2">created: {{session.created_humain}}</mdb-badge></h3></div>
@@ -15,21 +15,21 @@
           <mdb-tbl responsive>
             <mdb-tbl-body>
               <tr>
-                <th class="default-color text-white text-center" style="width: 100px">Last error</th>
+                <th class="elegant-color text-white text-center" style="width: 100px">Last error</th>
                 <td>{{session.err_msg}}</td>
               </tr>
               <tr>
-                <th class="default-color text-white text-center">comment</th>
+                <th class="elegant-color text-white text-center">comment</th>
                 <td>{{session.comment}}</td>
               </tr>
               <tr>
-                <th class="default-color text-white text-center">User info</th>
+                <th class="elegant-color text-white text-center">User info</th>
                 <td>
                     <pre style="height:150px;overflow:auto;">{{ session.user }}</pre>
                 </td>
               </tr>
               <tr>
-                <th class="default-color text-white text-center">Host info</th>
+                <th class="elegant-color text-white text-center">Host info</th>
                 <td>
                   <pre style="height:150px;overflow:auto;text-overflow:ellipsis;white-space:pre-wrap;">{{ session.host }}</pre>
                 </td>
