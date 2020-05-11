@@ -1,5 +1,5 @@
 <template>
-  <div style="padding-top: 60px">
+  <div>
     <section id="events" class="p-5">
       <mdb-row>
         <mdb-col xl="12" lg="12" md="12" class="mb-r">

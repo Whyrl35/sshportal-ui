@@ -37,6 +37,11 @@
     </mdb-row>
   </mdb-container>
 </template>
+<style>
+body {
+  background-color: #ededee;
+}
+</style>
 <script>
 export default {
   data() {
