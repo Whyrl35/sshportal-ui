@@ -134,7 +134,7 @@
     font-weight: bolder;
   }
 
-  a {
+  table.table a {
     color: #2196f3 !important;
     font-weight: bolder;
   }
