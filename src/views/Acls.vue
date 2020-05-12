@@ -10,5 +10,6 @@
     components: {
       AclList,
     },
+    props: ['page']
   }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <mdb-modal size="lg" :show="modal" @close="modal = false" info>
-      <mdb-modal-header class="elegant-color-dark">
+      <mdb-modal-header :color="$globalThemeColorDark">
         <mdb-modal-title>Session details</mdb-modal-title>
       </mdb-modal-header>
       <mdb-modal-body>
@@ -15,21 +15,21 @@
           <mdb-tbl responsive>
             <mdb-tbl-body>
               <tr>
-                <th class="elegant-color text-white text-center" style="width: 100px">Last error</th>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Last error</th>
                 <td>{{session.err_msg}}</td>
               </tr>
               <tr>
-                <th class="elegant-color text-white text-center">comment</th>
+                <th :class="$globalThemeColor + ' text-center'">comment</th>
                 <td>{{session.comment}}</td>
               </tr>
               <tr>
-                <th class="elegant-color text-white text-center">User info</th>
+                <th :class="$globalThemeColor + ' text-center'">User info</th>
                 <td>
                     <pre style="height:150px;overflow:auto;">{{ session.user }}</pre>
                 </td>
               </tr>
               <tr>
-                <th class="elegant-color text-white text-center">Host info</th>
+                <th :class="$globalThemeColor + ' text-center'">Host info</th>
                 <td>
                   <pre style="height:150px;overflow:auto;text-overflow:ellipsis;white-space:pre-wrap;">{{ session.host }}</pre>
                 </td>
@@ -69,12 +69,6 @@
     </div>
   </div>
 </template>
-<style>
-.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-  background-color: #33b5e5;
-  color: #fff;
-}
-</style>
 <script>
 export default {
   data() {

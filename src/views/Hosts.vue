@@ -10,5 +10,6 @@
     components: {
       HostList,
     },
+    props: ['page']
   }
 </script>

@@ -10,5 +10,6 @@
     components: {
       Home,
     },
+    props: ['page']
   }
 </script>

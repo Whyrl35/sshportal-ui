@@ -15,6 +15,7 @@ Vue.use(VueRouter)
     path: '/',
     name: 'home',
     component: Home,
+    props: { page: 1},
     meta: {
       requiresAuth: true
     }
@@ -22,12 +23,14 @@ Vue.use(VueRouter)
   {
     path: '/login',
     name: 'login',
+    props: { page: 1 },
     component: Login
   },
   {
     path: '/events',
     name: 'events',
     component: Events,
+    props: { page: 13 },
     meta: {
       requiresAuth: true
     }
@@ -36,6 +39,7 @@ Vue.use(VueRouter)
     path: '/sessions',
     name: 'sessions',
     component: Sessions,
+    props: { page: 12 },
     meta: {
       requiresAuth: true
     }
@@ -44,6 +48,7 @@ Vue.use(VueRouter)
     path: '/acls',
     name: 'acls',
     component: Acls,
+    props: { page: 11},
     meta: {
       requiresAuth: true
     }
@@ -52,6 +57,7 @@ Vue.use(VueRouter)
     path: '/hosts',
     name: 'hosts',
     component: Hosts,
+    props: { page: 9},
     meta: {
       requiresAuth: true
     }

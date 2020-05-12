@@ -10,5 +10,6 @@
     components: {
       EventList,
     },
+    props: ['page']
   }
 </script>

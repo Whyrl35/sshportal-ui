@@ -14,12 +14,16 @@ export default new Vuex.Store({
   mutations: {
     auth_request(state){
       state.status = 'loading'
+      state.refresh = ''
+      state.token = ''
+      state.user = ''
     },
     auth_success(state, token, refresh, user){
       state.status = 'success'
+      console.log('auth-success: ' + user)
+      state.user = user
       state.token = token
       state.refresh = refresh
-      state.user = user
     },
     auth_error(state){
       state.status = 'error'
@@ -29,8 +33,9 @@ export default new Vuex.Store({
     },
     logout(state){
       state.status = ''
+      state.refresh = ''
       state.token = ''
-      state.token = ''
+      state.user = ''
     },
   },
   actions: {
@@ -41,11 +46,12 @@ export default new Vuex.Store({
         .then(resp => {
           const token = resp.data.access_token
           const refresh = resp.data.refresh_token
-          const user = resp.data.user
+          const username = resp.data.user
           localStorage.setItem('token', token)
           localStorage.setItem('refresh', refresh)
+          localStorage.setItem('user', username)
           axios.defaults.headers.common['Authorization'] = "Bearer " + token
-          commit('auth_success', token, refresh, user)
+          commit('auth_success', token, refresh, username)
           resolve(resp)
         })
         .catch(err => {
@@ -67,6 +73,7 @@ export default new Vuex.Store({
           const token = resp.data.access_token
           const user = resp.data.user
           localStorage.setItem('token', token)
+          localStorage.setItem('user', user)
           axios.defaults.headers.common['Authorization'] = "Bearer " + token
           commit('auth_success', token, this.state.refresh, user)
           resolve(resp)
@@ -86,6 +93,7 @@ export default new Vuex.Store({
         commit('logout')
         localStorage.removeItem('token')
         localStorage.removeItem('refresh')
+        localStorage.removeItem('user')
         delete axios.defaults.headers.common['Authorization']
         resolve()
       })
@@ -94,5 +102,6 @@ export default new Vuex.Store({
   getters : {
     isLoggedIn: state => !!state.token,
     authStatus: state => state.status,
+    userName: state => state.user,
   }
 })

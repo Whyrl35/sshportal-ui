@@ -9,6 +9,7 @@
     name: 'login',
     components: {
       Signin
-    }
+    },
+    props: ['page']
   }
 </script>

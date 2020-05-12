@@ -1,7 +1,7 @@
 <template>
   <div>
     <mdb-modal size="lg" :show="modal" @close="modal = false" info>
-      <mdb-modal-header color="elegant-color-dark">
+      <mdb-modal-header :color="$globalThemeColorDark">
         <mdb-modal-title>Acls details</mdb-modal-title>
       </mdb-modal-header>
       <mdb-modal-body>
@@ -14,24 +14,24 @@
           <mdb-tbl responsive>
             <mdb-tbl-body>
               <tr >
-                <th class="elegant-color text-white text-center" style="width: 100px">Action</th>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Action</th>
                 <td><h3><mdb-badge :color="acl.action_color" class="">{{acl.action}}</mdb-badge></h3></td>
               </tr>
               <tr >
-                <th class="elegant-color text-white text-center" style="width: 100px">Weight</th>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Weight</th>
                 <td>{{acl.weight}}</td>
               </tr>
               <tr>
-                <th class="elegant-color text-white text-center">comment</th>
+                <th :class="$globalThemeColor + ' text-center'">comment</th>
                 <td>{{acl.comment}}</td>
               </tr>
               <tr>
-                <th class="elegant-color text-white text-center">UserGroup</th>
-                <td><router-link :to="{ name: 'acls' }">{{ acl.user_groups.name }}</router-link></td>
+                <th :class="$globalThemeColor + ' text-center'">UserGroup</th>
+                <td><router-link to="/acls">{{ acl.user_groups.name }} <mdb-icon icon="external-link-alt" /></router-link></td>
               </tr>
               <tr>
-                <th class="elegant-color text-white text-center">HostGroup</th>
-                <td><a href="#" :to="acls">{{ acl.host_groups.name }}</a></td>
+                <th :class="$globalThemeColor + ' text-center'">HostGroup</th>
+                <td><router-link to="/acls">{{ acl.host_groups.name }} <mdb-icon icon="external-link-alt" /></router-link></td>
               </tr>
             </mdb-tbl-body>
           </mdb-tbl>
@@ -68,12 +68,6 @@
     </div>
   </div>
 </template>
-<style>
-.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-  background-color: #33b5e5;
-  color: #fff;
-}
-</style>
 <script>
 export default {
   data() {
@@ -114,41 +108,6 @@ export default {
         this.modal = false
       });
     },
-    timeSince(date, short_format) {
-      var seconds = Math.floor((new Date() - date) / 1000);
-      var interval = Math.floor(seconds / 31536000);
-
-      if (interval > 1) {
-        return !short_format ? interval + " years ago" : interval + "y ago"
-      }
-      interval = Math.floor(seconds / 2592000);
-      if (interval > 1) {
-        return !short_format ? interval + " months ago" : interval + "mth ago"
-      }
-      interval = Math.floor(seconds / 86400);
-      if (interval > 1) {
-        return !short_format ? interval + " days ago" : interval + "d ago"
-      }
-      interval = Math.floor(seconds / 3600);
-      if (interval > 1) {
-        return !short_format ? interval + " hours ago" : interval + "h ago"
-      }
-      interval = Math.floor(seconds / 60);
-      if (interval > 1) {
-        return !short_format ? interval + " minutes ago" : interval + "min ago"
-      }
-      return !short_format ? interval + " secondes ago" : interval + "s ago"
-    },
-    timeBetween(start, end, short_format) {
-      var duration = new Date(end - start);
-      var h = duration.getHours() - 1;
-      var m = duration.getMinutes();
-      var s = duration.getSeconds();
-      if (short_format) {
-        return h > 0 ? h + "h" : m > 0 ? m + "m" : s > 0 ? s + "s" : "";
-      }
-        return h > 0 ? h + " hours" : m > 0 ? m + " minutes" : s > 0 ? s + " secondes" : "";
-    }
   },
   mounted() {
     this.$http

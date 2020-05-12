@@ -11,7 +11,7 @@
         <mdb-navbar-nav right>
           <span v-if="isLoggedIn">
             <mdb-dropdown tag="li" class="nav-item">
-              <mdb-dropdown-toggle tag="a" navLink color="unique-color-dark" slot="toggle" waves-fixed><mdb-icon far icon="user" /></mdb-dropdown-toggle>
+              <mdb-dropdown-toggle tag="a" navLink color="unique-color-dark" slot="toggle" waves-fixed><mdb-icon far icon="user" /> Hello {{ this.userName }}</mdb-dropdown-toggle>
               <mdb-dropdown-menu>
                 <mdb-dropdown-item @click.native="logout">Logout</mdb-dropdown-item>
               </mdb-dropdown-menu>
@@ -23,15 +23,15 @@
     </mdb-navbar>
     <!--./NavBar-->
     <!-- Sidebar -->
-    <div class="sidebar-fixed position-fixed elegant-color">
+    <div class="sidebar-fixed position-fixed stylish-color">
       <div class="logo"><a><img src="./assets/ssh-logo2.jpg" class="img-fluid p-1" alt="sshportal"></a></div>
-      <div class="sidemenu">
-        <mdb-list-group class="unique-color-dark" flush>
+      <div class="sidemenu pt-3">
+        <mdb-list-group class="stylish-color" flush>
           <router-link to="/" @click.native="activeItem = 1">
-            <mdb-list-group-item
-              :action="true"
-              :class="activeItem === 1 && 'small text-uppercase active' || 'text-uppercase small'"
-              icon="home">Home</mdb-list-group-item>
+            <mdb-list-group-item :action="true" icon="home"
+              :class="activeItem === 1 && 'small text-uppercase active' || 'text-uppercase small'">
+              Home
+            </mdb-list-group-item>
           </router-link>
           <mdb-list-group-item class="disabled pt-4 font-weight-bold small text-uppercase">Users</mdb-list-group-item>
           <router-link to="/users" @click.native="activeItem = 4">
@@ -134,9 +134,14 @@
     font-weight: bolder;
   }
 
+  a {
+    color: #2196f3 !important;
+    font-weight: bolder;
+  }
+
   .logo {
     height: 72px;
-    background-color: #212121 !important;
+    background-color: #2e2e2e !important;
     padding-left: 18px;
     margin-left: 0;
     width: 100%
@@ -147,12 +152,21 @@
     margin-left: 24px;
     margin-top: 10px;
   }
+
+  main {
+    background-color: #ededee;
+  }
+
+  .md-v-line {
+    border-left: 0px !important;
+  }
+
+  .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #3F729B;
+    color: #fff;
+  }
 </style>
 <style scoped>
-
-main {
-  background-color: #ededee;
-}
 
 .flexible-content {
   transition: padding-left 0.3s;
@@ -179,7 +193,7 @@ main {
 .sidebar-fixed .list-group-item {
   display: block !important;
   transition: background-color 0.3s;
-  background-color: #2E2E2E;
+  background-color: #4B515D;
   color: #fff;
   border: 0px;
   border-image-width: 0;
@@ -187,11 +201,11 @@ main {
 
 .sidebar-fixed .list-group .active {
   border-radius: 0px;
-  background-color: #3E4551;
+  background-color: #3F729B;
 }
 .sidebar-fixed .list-group :hover {
   border-radius: 0px;
-  background-color: #3E4551;
+  background-color: #3F729B;
 }
 
 @media (max-width: 1199.98px) {
@@ -252,7 +266,12 @@ export default {
   },
   computed: {
     isLoggedIn() {
-       return this.$store.getters.isLoggedIn;
+      console.log(this.$store.getters.isLoggedIn)
+      return this.$store.getters.isLoggedIn;
+    },
+    userName() {
+      console.log(this.$store.getters.userName)
+      return this.$store.state.user;
     }
   }
 

@@ -11,5 +11,6 @@
     components: {
       SessionList,
     },
+    props: ['page']
   }
 </script>
