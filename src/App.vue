@@ -2,9 +2,6 @@
   <div class="flexible-content">
     <!--NavBar-->
     <mdb-navbar class="flexible-navbar white" light position="top" scrolling >
-      <mdb-navbar-brand href="/" :to="{ name: 'home'}">
-        sshportal-ui
-      </mdb-navbar-brand>
       <mdb-navbar-toggler>
         <mdb-navbar-nav>
         </mdb-navbar-nav>
@@ -28,92 +25,116 @@
       <div class="sidemenu pt-3">
         <mdb-list-group class="stylish-color" flush>
           <router-link to="/" @click.native="activeItem = 1">
-            <mdb-list-group-item :action="true" icon="home"
-              :class="activeItem === 1 && 'small text-uppercase active' || 'text-uppercase small'">
-              Home
+            <mdb-list-group-item :action="true"
+              :class="activeItem === 1 && 'active'">
+              <mdb-icon icon="home" class="w-25" size="lg"/><span class="text-uppercase small">Home</span>
             </mdb-list-group-item>
           </router-link>
           <mdb-list-group-item class="disabled pt-4 font-weight-bold small text-uppercase">Users</mdb-list-group-item>
           <router-link to="/users" @click.native="activeItem = 4">
             <mdb-list-group-item
               :action="true"
-              :class="activeItem === 4 && 'small text-uppercase active' || 'text-uppercase small'"
-              icon="user">Users</mdb-list-group-item>
+              :class="activeItem === 4 && 'active'">
+              <mdb-icon icon="user" class="w-25" size="lg"/><span class="text-uppercase small">Users</span>
+            </mdb-list-group-item>
           </router-link>
           <router-link to="/groups" @click.native="activeItem = 5">
             <mdb-list-group-item
               :action="true"
-              :class="activeItem === 5 && 'small text-uppercase active' || 'text-uppercase small'"
-              icon="users">Groups</mdb-list-group-item>
+              :class="activeItem === 5 && 'active'">
+              <mdb-icon icon="users" class="w-25" size=""/><span class="text-uppercase small">Groups</span>
+            </mdb-list-group-item>
           </router-link>
           <router-link to="/roles" @click.native="activeItem = 6">
             <mdb-list-group-item
               :action="true"
-              :class="activeItem === 6 && 'small text-uppercase active' || 'text-uppercase small'"
-              icon="user-tag">Roles</mdb-list-group-item>
+              :class="activeItem === 6 && 'active'">
+              <mdb-icon icon="user-tag" class="w-25" size=""/><span class="text-uppercase small">Roles</span>
+            </mdb-list-group-item>
           </router-link>
           <mdb-list-group-item class="disabled pt-4 font-weight-bold small text-uppercase">Keys</mdb-list-group-item>
           <router-link to="/keys" @click.native="activeItem = 7">
             <mdb-list-group-item
               :action="true"
-              :class="activeItem === 7 && 'small text-uppercase active' || 'text-uppercase small'"
-              icon="key">Keys</mdb-list-group-item>
+              :class="activeItem === 7 && 'active'">
+              <mdb-icon icon="key" class="w-25" size="lg"/><span class="text-uppercase small">Keys</span>
+            </mdb-list-group-item>
           </router-link>
           <router-link to="/userkeys" @click.native="activeItem = 8">
             <mdb-list-group-item
               :action="true"
-              :class="activeItem === 8 && 'small text-uppercase active' || 'text-uppercase small'"
-              icon="user-lock">User Keys</mdb-list-group-item>
+              :class="activeItem === 8 && 'active'">
+              <mdb-icon icon="user-lock" class="w-25" size=""/><span class="text-uppercase small">User Keys</span>
+            </mdb-list-group-item>
           </router-link>
           <mdb-list-group-item class="disabled pt-4 font-weight-bold small text-uppercase">Hosts</mdb-list-group-item>
           <router-link to="/hosts" @click.native="activeItem = 9">
             <mdb-list-group-item
               :action="true"
-              :class="activeItem === 9 && 'small text-uppercase active' || 'text-uppercase small'"
-              icon="server">Hosts</mdb-list-group-item>
+              :class="activeItem === 9 && 'active'">
+              <mdb-icon icon="server" class="w-25" size=""/><span class="text-uppercase small">Hosts</span>
+            </mdb-list-group-item>
           </router-link>
           <router-link to="/hostgroups" @click.native="activeItem = 10">
             <mdb-list-group-item
               :action="true"
-              :class="activeItem === 10 && 'small text-uppercase active' || 'text-uppercase small'"
-              icon="layer-group">Host Groups</mdb-list-group-item>
+              :class="activeItem === 10 && 'active'">
+              <mdb-icon icon="layer-group" class="w-25" size=""/><span class="text-uppercase small">Host Groups</span>
+            </mdb-list-group-item>
           </router-link>
           <mdb-list-group-item class="disabled pt-4 font-weight-bold small text-uppercase">Security</mdb-list-group-item>
           <router-link to="/acls" @click.native="activeItem = 11">
             <mdb-list-group-item
               :action="true"
-              :class="activeItem === 11 && 'small text-uppercase active' || 'text-uppercase small'"
-              icon="shield-alt">Acls</mdb-list-group-item>
+              :class="activeItem === 11 && 'active'">
+              <mdb-icon icon="shield-alt" class="w-25" size=""/><span class="text-uppercase small">Acls</span>
+            </mdb-list-group-item>
           </router-link>
           <mdb-list-group-item class="disabled pt-4 font-weight-bold small text-uppercase">Logs</mdb-list-group-item>
           <router-link to="/sessions" @click.native="activeItem = 12">
             <mdb-list-group-item
               :action="true"
-              :class="activeItem === 12 && 'small text-uppercase active' || 'text-uppercase small'"
-              icon="ethernet">Sessions</mdb-list-group-item>
+              :class="activeItem === 12 && 'active'">
+              <mdb-icon icon="ethernet" class="w-25" size=""/><span class="text-uppercase small">Sessions</span>
+            </mdb-list-group-item>
           </router-link>
           <router-link to="/events" @click.native="activeItem = 13">
             <mdb-list-group-item
               :action="true"
-              :class="activeItem === 13 && 'small text-uppercase active' || 'text-uppercase small'"
-              icon="list-alt">Events</mdb-list-group-item>
+              :class="activeItem === 13 && 'active'">
+              <mdb-icon icon="list-alt" class="w-25" size=""/><span class="text-uppercase small">Events</span>
+            </mdb-list-group-item>
           </router-link>
           <mdb-list-group-item class="disabled pt-4 font-weight-bold small text-uppercase">Settings</mdb-list-group-item>
           <router-link to="/settings" @click.native="activeItem = 14">
             <mdb-list-group-item
               :action="true"
-              :class="activeItem === 14 && 'small text-uppercase active' || 'text-uppercase small'"
-              icon="cog">Settings</mdb-list-group-item>
+              :class="activeItem === 14 && 'active'">
+              <mdb-icon icon="cog" class="w-25" size=""/><span class="text-uppercase small">Settings</span>
+            </mdb-list-group-item>
           </router-link>
         </mdb-list-group>
       </div>
     </div>
     <!-- /Sidebar  -->
     <main>
-      <div id="app" class="mt-5 p-5">
+      <div id="app" class="mt-3 p-3">
         <router-view></router-view>
       </div>
     </main>
+    <mdb-navbar class="footer-copyright" color="grey lighten-2" position="bottom">
+       <mdb-navbar-toggler>
+        <mdb-navbar-nav>
+          <span class="navbar-text light-blue-text strong pr-4"><strong>sshportal-ui v0.2</strong></span>
+          <mdb-nav-item href="https://github.com/Whyrl35/sshportal-ui/"><mdb-icon fab icon="github" size="sm"/>GitHub</mdb-nav-item>
+          <mdb-nav-item href="https://github.com/Whyrl35/sshportal-ui/issues"><mdb-icon icon="bug" size="xs"/>Issues</mdb-nav-item>
+          <mdb-nav-item href="https://buymeacoffee.com/whyrl"><mdb-icon icon="coffee" size="xs"/> Support</mdb-nav-item>
+        </mdb-navbar-nav>
+        <mdb-navbar-nav right>
+          <span class="navbar-text"><small><mdb-icon icon="plug" size="sm"/> connect to <b>{{ this.hostName()}}</b></small></span>
+        </mdb-navbar-nav>
+      </mdb-navbar-toggler>
+    </mdb-navbar>
   </div>
 </template>
 <style lang="scss">
@@ -157,16 +178,22 @@
     background-color: #ededee;
   }
 
-  .md-v-line {
-    border-left: 0px !important;
-  }
-
   .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background-color: #3F729B;
     color: #fff;
   }
 </style>
 <style scoped>
+
+.footer-copyright {
+  margin-left: 220px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  height: 28px;
+  border-top: 1px solid #c9c9c9;
+}
 
 .flexible-content {
   transition: padding-left 0.3s;

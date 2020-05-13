@@ -84,6 +84,9 @@ Vue.mixin({
       var match_str = new RegExp(".{1," + size + "}", "g");
       return bigstr.match(match_str);
     },
+    hostName: function () {
+      return location.host;
+    },
   }
 })
 
