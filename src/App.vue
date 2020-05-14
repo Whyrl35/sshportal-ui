@@ -118,7 +118,7 @@
     </div>
     <!-- /Sidebar  -->
     <main>
-      <div id="app" class="mt-5 p-3">
+      <div id="app" class="mt-5 p-4">
         <router-view></router-view>
       </div>
     </main>
