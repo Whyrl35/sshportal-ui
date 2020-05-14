@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <Navbar/>
     <SessionList/>
   </div>
 </template>

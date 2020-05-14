@@ -110,43 +110,8 @@ export default {
         this.modal = false
       });
     },
-    timeSince(date, short_format) {
-      var seconds = Math.floor((new Date() - date) / 1000);
-      var interval = Math.floor(seconds / 31536000);
-
-      if (interval > 1) {
-        return !short_format ? interval + " years ago" : interval + "y ago"
-      }
-      interval = Math.floor(seconds / 2592000);
-      if (interval > 1) {
-        return !short_format ? interval + " months ago" : interval + "mth ago"
-      }
-      interval = Math.floor(seconds / 86400);
-      if (interval > 1) {
-        return !short_format ? interval + " days ago" : interval + "d ago"
-      }
-      interval = Math.floor(seconds / 3600);
-      if (interval > 1) {
-        return !short_format ? interval + " hours ago" : interval + "h ago"
-      }
-      interval = Math.floor(seconds / 60);
-      if (interval > 1) {
-        return !short_format ? interval + " minutes ago" : interval + "min ago"
-      }
-      return !short_format ? interval + " secondes ago" : interval + "s ago"
-    },
-    timeBetween(start, end, short_format) {
-      var duration = new Date(end - start);
-      var h = duration.getHours() - 1;
-      var m = duration.getMinutes();
-      var s = duration.getSeconds();
-      if (short_format) {
-        return h > 0 ? h + "h" : m > 0 ? m + "m" : s > 0 ? s + "s" : "";
-      }
-        return h > 0 ? h + " hours" : m > 0 ? m + " minutes" : s > 0 ? s + " secondes" : "";
-    }
   },
-  mounted() {
+  beforeMount() {
     this.$http
       .get(process.env.VUE_APP_API_URL + "/v1/sessions")
       .then(response => {

@@ -107,7 +107,7 @@
             <mdb-card-body>
             </mdb-card-body>
             <mdb-card-footer class="small secondary-color-dark lighten-1 text-center white-text border-0 hover">
-              <router-link :to="{ name: 'events' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
+              <router-link :to="{ name: 'events', props: { page: 13 } }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
             </mdb-card-footer>
           </mdb-card>
         </mdb-col>

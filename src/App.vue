@@ -1,14 +1,18 @@
 <template>
   <div class="flexible-content">
     <!--NavBar-->
-    <mdb-navbar class="flexible-navbar white" light position="top" scrolling >
+    <mdb-navbar class="flexible-navbar white p-1" light position="top" scrolling >
       <mdb-navbar-toggler>
         <mdb-navbar-nav>
         </mdb-navbar-nav>
         <mdb-navbar-nav right>
           <span v-if="isLoggedIn">
             <mdb-dropdown tag="li" class="nav-item">
-              <mdb-dropdown-toggle tag="a" navLink color="unique-color-dark" slot="toggle" waves-fixed><mdb-icon far icon="user" /> Hello {{ this.userName }}</mdb-dropdown-toggle>
+              <mdb-dropdown-toggle tag="a" navLink color="unique-color-dark" slot="toggle" waves-fixed>
+                <div class="d-inline-block pr-2">
+                  <v-gravatar :email="userEmail" class="rounded-circle img-fluid" style="width: 40px" />
+                </div>
+                Hello {{ this.userName }}</mdb-dropdown-toggle>
               <mdb-dropdown-menu>
                 <mdb-dropdown-item @click.native="logout">Logout</mdb-dropdown-item>
               </mdb-dropdown-menu>
@@ -260,7 +264,10 @@ export default {
   beforeMount() {
     this.activeItem = this.$route.matched[0].props.default.page;
   },
-    created: function () {
+  beforeUpdate() {
+    this.activeItem = this.$route.matched[0].props.default.page;
+  },
+  created: function () {
     this.$http.interceptors.response.use(undefined, function (err) {
       return new Promise(function () {
         if (err.response.status === 401) {
@@ -293,12 +300,14 @@ export default {
   },
   computed: {
     isLoggedIn() {
-      console.log(this.$store.getters.isLoggedIn)
       return this.$store.getters.isLoggedIn;
     },
     userName() {
-      console.log(this.$store.getters.userName)
       return this.$store.state.user;
+    },
+    userEmail() {
+      console.log(this.$store.getters.userEmail)
+      return this.$store.getters.userEmail;
     }
   }
 

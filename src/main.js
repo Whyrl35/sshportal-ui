@@ -7,12 +7,14 @@ import router from './router'
 import 'mdbvue/lib/css/mdb.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import * as mdbvue from 'mdbvue'
+import Gravatar from 'vue-gravatar';
 
 //
 //-- Load all Material Design Bootstrap component
 for (const component in mdbvue) {
   Vue.component(component, mdbvue[component])
 }
+Vue.component('v-gravatar', Gravatar)
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 

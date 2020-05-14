@@ -53,7 +53,7 @@ export default {
         return data;
       }
     },
-    mounted() {
+    beforeMount() {
         this.$http
         .get(process.env.VUE_APP_API_URL + "/v1/events")
         .then(response => {

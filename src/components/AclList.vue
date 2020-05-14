@@ -109,7 +109,7 @@ export default {
       });
     },
   },
-  mounted() {
+  beforeMount() {
     this.$http
       .get(process.env.VUE_APP_API_URL + "/v1/acls")
       .then(response => {
