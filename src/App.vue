@@ -18,7 +18,12 @@
               </mdb-dropdown-menu>
             </mdb-dropdown>
           </span>
-          <span v-else><mdb-nav-item :to="{ name: 'login'}" active class="ml-5">Login</mdb-nav-item></span>
+          <span v-else><mdb-nav-item :to="{ name: 'login'}" active class="">
+            <div class="d-inline-block pt-2" style="height: 47px">
+              Login
+            </div>
+            </mdb-nav-item>
+          </span>
         </mdb-navbar-nav>
       </mdb-navbar-toggler>
     </mdb-navbar>
