@@ -2,18 +2,18 @@
   <div>
     <mdb-modal size="lg" :show="modal" @close="modal = false" info>
       <mdb-modal-header :color="$globalThemeColorDark">
-        <mdb-modal-title>Host details</mdb-modal-title>
+        <mdb-modal-title>HostGroup details</mdb-modal-title>
       </mdb-modal-header>
       <mdb-modal-body>
         <div class="d-flex flex-row pb-3">
           <div class="flex-fill pr-1">
             <h3>
-              <mdb-badge :color="$globalBadgeColor" class="w-100 p-2">ID: {{host.id}}</mdb-badge>
+              <mdb-badge :color="$globalBadgeColor" class="w-100 p-2">ID: {{host_group.id}}</mdb-badge>
             </h3>
           </div>
           <div class="flex-fill">
             <h3>
-              <mdb-badge :color="$globalBadgeColor" class="w-100 p-2">Name: {{host.name}}</mdb-badge>
+              <mdb-badge :color="$globalBadgeColor" class="w-100 p-2">Name: {{host_group.name}}</mdb-badge>
             </h3>
           </div>
         </div>
@@ -21,47 +21,41 @@
           <mdb-tbl responsive>
             <mdb-tbl-body>
               <tr>
-                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Url</th>
-                <td>{{host.url}}</td>
-              </tr>
-              <tr>
                 <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Comment</th>
-                <td>{{host.comment}}</td>
+                <td>{{host_group.comment}}</td>
               </tr>
               <tr>
-                <th :class="$globalThemeColor + ' text-center'">Hop</th>
-                <td>{{host.hop}}</td>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Created at</th>
+                <td>{{host_group.created_at}}</td>
               </tr>
               <tr>
-                <th :class="$globalThemeColor + ' text-center'">Address</th>
-                <td>{{host.addr}}</td>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Updated at</th>
+                <td>{{host_group.updated_at}}</td>
               </tr>
               <tr>
-                <th :class="$globalThemeColor + ' text-center'">User</th>
-                <td>{{host.user}}</td>
-              </tr>
-              <tr>
-                <th :class="$globalThemeColor + ' text-center'">Host key</th>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">ACLs</th>
                 <td>
-                  <pre style="overflow:auto;text-overflow:ellipsis;white-space:pre-wrap;width:100%">{{ host.host_key }}</pre>
+                    <div style="max-height:150px; overflow:auto;">
+                        <div v-for="item in host_group.acls" :key="item.id">
+                            <a href="#">
+                                id:{{item.id}}
+                                <mdb-icon icon="external-link-alt" />
+                            </a>
+                        </div>
+                    </div>
                 </td>
               </tr>
               <tr>
-                <th :class="$globalThemeColor + ' text-center'">Host Groups</th>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Hosts</th>
                 <td>
-                  <a href="#">
-                    {{ host.host_groups_name }}
-                    <mdb-icon icon="external-link-alt" />
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <th :class="$globalThemeColor + ' text-center'">SSH key</th>
-                <td>
-                  <a href="#">
-                    {{ host.ssh_key_name }}
-                    <mdb-icon icon="external-link-alt" />
-                  </a>
+                    <div style="max-height:150px; overflow:auto;">
+                        <div v-for="item in host_group.hosts" :key="item.id">
+                            <a href="#">
+                                {{ item.name }}
+                                <mdb-icon icon="external-link-alt" />
+                            </a>
+                        </div>
+                    </div>
                 </td>
               </tr>
             </mdb-tbl-body>
@@ -76,7 +70,7 @@
       <section id="events" class="p-5">
         <mdb-row>
           <mdb-col xl="12" lg="12" md="12" class="mb-r">
-            <h1>Hosts list</h1>
+            <h1>HostGroups list</h1>
             <small>click on row to view details</small>
           </mdb-col>
           <mdb-col xl="12" lg="12" md="12" class="mt-4">
@@ -112,7 +106,7 @@ export default {
         rows: []
       },
       modal: false,
-      host: {}
+      host_group: {}
     };
   },
   comupted: {
@@ -126,14 +120,11 @@ export default {
       this.$http
         .get(
           process.env.VUE_APP_API_URL +
-            "/v1/host/" +
+            "/v1/host_group/" +
             this.tableData.rows[row]["id"]
         )
         .then(response => {
-          this.host = response.data;
-          this.host.host_key = this.chunkStr(this.host.host_key).join("\r\n");
-          this.host.host_groups_name = this.host.host_groups.name
-          this.host.ssh_key_name = this.host.ssh_key.name
+          this.host_group = response.data;
 
           this.$nextTick(function() {
             this.modal = true;
@@ -147,7 +138,7 @@ export default {
   },
   beforeMount() {
     this.$http
-      .get(process.env.VUE_APP_API_URL + "/v1/hosts")
+      .get(process.env.VUE_APP_API_URL + "/v1/host_groups")
       .then(response => {
         let data = response.data.reverse();
         this.tableData.columns.push({ label: "ID", field: "id", sort: true });
@@ -156,15 +147,14 @@ export default {
           field: "name",
           sort: true
         });
-        this.tableData.columns.push({ label: "URL", field: "url", sort: true });
         this.tableData.columns.push({
-          label: "KEY",
-          field: "ssh_key_name",
+          label: "HOSTS",
+          field: "hosts",
           sort: true
         });
         this.tableData.columns.push({
-          label: "GROUP",
-          field: "host_groups_name",
+          label: "ACLS",
+          field: "acls",
           sort: true
         });
         this.tableData.columns.push({
@@ -182,11 +172,10 @@ export default {
           field: "comment",
           sort: true
         });
-        this.tableData.columns.push({ label: "HOP", field: "hop", sort: true });
 
         for (const item of data) {
-          item["ssh_key_name"] = item["ssh_key"]["name"];
-          item["host_groups_name"] = item["host_groups"]["name"];
+          item['hosts'] = item['hosts'].length;
+          item['acls'] = item['acls'].length;
           item["updated_at"] = this.timeSince(new Date(item["updated_at"]));
           item["created_at"] = this.timeSince(new Date(item["created_at"]));
           this.tableData.rows.push(item);

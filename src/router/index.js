@@ -7,6 +7,7 @@ import Events from '../views/Events.vue'
 import Sessions from '../views/Sessions.vue'
 import Acls from '../views/Acls.vue'
 import Hosts from '../views/Hosts.vue'
+import HostGroups from '../views/HostGroups.vue'
 
 Vue.use(VueRouter)
 
@@ -27,19 +28,19 @@ Vue.use(VueRouter)
     component: Login
   },
   {
-    path: '/events',
-    name: 'events',
-    component: Events,
-    props: { page: 13 },
+    path: '/hosts',
+    name: 'hosts',
+    component: Hosts,
+    props: { page: 9},
     meta: {
       requiresAuth: true
     }
   },
   {
-    path: '/sessions',
-    name: 'sessions',
-    component: Sessions,
-    props: { page: 12 },
+    path: '/hostgroups',
+    name: 'hostgroups',
+    component: HostGroups,
+    props: { page: 10},
     meta: {
       requiresAuth: true
     }
@@ -54,10 +55,19 @@ Vue.use(VueRouter)
     }
   },
   {
-    path: '/hosts',
-    name: 'hosts',
-    component: Hosts,
-    props: { page: 9},
+    path: '/sessions',
+    name: 'sessions',
+    component: Sessions,
+    props: { page: 12 },
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/events',
+    name: 'events',
+    component: Events,
+    props: { page: 13 },
     meta: {
       requiresAuth: true
     }

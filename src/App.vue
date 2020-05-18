@@ -30,7 +30,7 @@
     <!--./NavBar-->
     <!-- Sidebar -->
     <div class="sidebar-fixed position-fixed stylish-color">
-      <div class="logo"><a><img src="./assets/ssh-logo2.jpg" class="img-fluid p-1" alt="sshportal"></a></div>
+      <div class="logo pt-4 pl-5"><a><span class="white-text"><b>SSHPORTAL-UI</b></span></a></div>
       <div class="sidemenu pt-3">
         <mdb-list-group class="stylish-color" flush>
           <router-link to="/" @click.native="activeItem = 1">
@@ -178,9 +178,9 @@
   }
 
   .logo img {
-    height: 48px;
+    height: 60px;
     margin-left: 24px;
-    margin-top: 10px;
+    margin-top: 5px;
   }
 
   main {

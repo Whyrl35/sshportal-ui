@@ -6,10 +6,10 @@
       </mdb-modal-header>
       <mdb-modal-body>
         <div class="d-flex flex-row  pb-3">
-          <div class="flex-fill px-2"><h3><mdb-badge color="primary" class="w-100 p-2">ID: {{session.id}}</mdb-badge></h3></div>
-          <div class="flex-fill px-2"><h3><mdb-badge :color="session.status_color" class="w-100 p-2">Status: {{session.status}}</mdb-badge></h3></div>
-          <div class="flex-fill px-2"><h3><mdb-badge color="info" class="w-100 p-2">created: {{session.created_humain}}</mdb-badge></h3></div>
-          <div class="flex-fill px-2"><h3><mdb-badge color="info" class="w-100 p-2">duration: {{session.duration_humain}}</mdb-badge></h3></div>
+          <div class="flex-fill pr-2"><h3><mdb-badge :color="$globalBadgeColor" class="w-100 p-2">ID: {{session.id}}</mdb-badge></h3></div>
+          <div class="flex-fill pr-2"><h3><mdb-badge :color="session.status_color" class="w-100 p-2">Status: {{session.status}}</mdb-badge></h3></div>
+          <div class="flex-fill pr-2"><h3><mdb-badge :color="$globalBadgeColor" class="w-100 p-2">created: {{session.created_humain}}</mdb-badge></h3></div>
+          <div class="flex-fill "><h3><mdb-badge :color="$globalBadgeColor" class="w-100 p-2">duration: {{session.duration_humain}}</mdb-badge></h3></div>
         </div>
         <div>
           <mdb-tbl responsive>
@@ -25,13 +25,19 @@
               <tr>
                 <th :class="$globalThemeColor + ' text-center'">User info</th>
                 <td>
-                    <pre style="height:150px;overflow:auto;">{{ session.user }}</pre>
+                  <a href="#">
+                    {{ session.user.name }}
+                    <mdb-icon icon="external-link-alt" />
+                  </a>
                 </td>
               </tr>
               <tr>
                 <th :class="$globalThemeColor + ' text-center'">Host info</th>
                 <td>
-                  <pre style="height:150px;overflow:auto;text-overflow:ellipsis;white-space:pre-wrap;">{{ session.host }}</pre>
+                  <a href="#">
+                    {{ session.host.name }}
+                    <mdb-icon icon="external-link-alt" />
+                  </a>
                 </td>
               </tr>
             </mdb-tbl-body>

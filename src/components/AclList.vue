@@ -6,9 +6,9 @@
       </mdb-modal-header>
       <mdb-modal-body>
         <div class="d-flex flex-row  pb-3">
-          <div class="flex-fill pr-1"><h3><mdb-badge color="primary" class="w-100 p-2">ID: {{acl.id}}</mdb-badge></h3></div>
-          <div class="flex-fill pr-1"><h3><mdb-badge color="info" class="w-100 p-2">created: {{acl.created_humain}}</mdb-badge></h3></div>
-          <div class="flex-fill"><h3><mdb-badge color="info" class="w-100 p-2">modified: {{acl.updated_humain}}</mdb-badge></h3></div>
+          <div class="flex-fill pr-1"><h3><mdb-badge :color="$globalBadgeColor" class="w-100 p-2">ID: {{acl.id}}</mdb-badge></h3></div>
+          <div class="flex-fill pr-1"><h3><mdb-badge :color="$globalBadgeColor" class="w-100 p-2">created: {{acl.created_humain}}</mdb-badge></h3></div>
+          <div class="flex-fill"><h3><mdb-badge :color="$globalBadgeColor" class="w-100 p-2">modified: {{acl.updated_humain}}</mdb-badge></h3></div>
         </div>
         <div>
           <mdb-tbl responsive>
