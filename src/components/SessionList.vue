@@ -26,7 +26,7 @@
                 <th :class="$globalThemeColor + ' text-center'">User info</th>
                 <td>
                   <a href="#">
-                    {{ session.user.name }}
+                    {{ (session.user && session.user.name) || "" }}
                     <mdb-icon icon="external-link-alt" />
                   </a>
                 </td>
@@ -35,7 +35,7 @@
                 <th :class="$globalThemeColor + ' text-center'">Host info</th>
                 <td>
                   <a href="#">
-                    {{ session.host.name }}
+                    {{ (session.host && session.host.name) || ""  }}
                     <mdb-icon icon="external-link-alt" />
                   </a>
                 </td>
