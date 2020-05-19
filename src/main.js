@@ -45,7 +45,7 @@ Vue.prototype.$http.interceptors.response.use(undefined, function (err) {
 Vue.mixin({
   methods: {
     timeBetween: function(start, end, short_format) {
-      var duration = new Date(end - start);
+      var duration = new Date(end.getTime() - start.getTime());
       var h = duration.getHours() - 1;
       var m = duration.getMinutes();
       var s = duration.getSeconds();
@@ -55,7 +55,7 @@ Vue.mixin({
         return h > 0 ? h + " hours" : m > 0 ? m + " minutes" : s > 0 ? s + " secondes" : "";
     },
     timeSince: function(date, short_format) {
-      var seconds = Math.floor((Date.now() - date) / 1000);
+      var seconds = Math.floor((Date.now() - date.getTime()) / 1000);
       var interval = Math.floor(seconds / 31536000);
 
       if (interval > 1) {

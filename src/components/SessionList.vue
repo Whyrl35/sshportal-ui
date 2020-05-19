@@ -104,7 +104,7 @@ export default {
         this.session = data
         this.session.status_color = data.status == "closed" ? "success" : "warning"
         this.session.created_humain = this.timeSince(new Date(data.created_at), true)
-        this.session.duration_humain = data.status == "closed" ? this.timeBetween(new Date(data.created_at), new Date(data.updated_at), true) : "still"
+        this.session.duration_humain = data.status == "closed" ? this.timeBetween(new Date(data.created_at), new Date(data.updated_at), true) : "on-going"
         var original_str = this.session.host.host_key
         this.session.host.host_key = original_str.substring(0,16)
         this.session.host.host_key += "..."
