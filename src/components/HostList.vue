@@ -29,6 +29,14 @@
                 <td>{{host.comment}}</td>
               </tr>
               <tr>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Created at</th>
+                <td>{{host.created_at}}</td>
+              </tr>
+              <tr>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Updated at</th>
+                <td>{{host.updated_at}}</td>
+              </tr>
+              <tr>
                 <th :class="$globalThemeColor + ' text-center'">Hop</th>
                 <td>{{host.hop}}</td>
               </tr>
@@ -134,6 +142,8 @@ export default {
           this.host.host_key = this.chunkStr(this.host.host_key).join("\r\n");
           this.host.host_groups_name = this.host.host_groups.name
           this.host.ssh_key_name = this.host.ssh_key.name
+          this.host.created_at = new Date(this.host.created_at).toLocaleString()
+          this.host.updated_at = new Date(this.host.updated_at).toLocaleString()
 
           this.$nextTick(function() {
             this.modal = true;

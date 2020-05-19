@@ -6,10 +6,8 @@
       </mdb-modal-header>
       <mdb-modal-body>
         <div class="d-flex flex-row  pb-3">
-          <div class="flex-fill pr-2"><h3><mdb-badge :color="$globalBadgeColor" class="w-100 p-2">ID: {{session.id}}</mdb-badge></h3></div>
-          <div class="flex-fill pr-2"><h3><mdb-badge :color="session.status_color" class="w-100 p-2">Status: {{session.status}}</mdb-badge></h3></div>
-          <div class="flex-fill pr-2"><h3><mdb-badge :color="$globalBadgeColor" class="w-100 p-2">created: {{session.created_humain}}</mdb-badge></h3></div>
-          <div class="flex-fill "><h3><mdb-badge :color="$globalBadgeColor" class="w-100 p-2">duration: {{session.duration_humain}}</mdb-badge></h3></div>
+          <div class="flex-fill pr-1"><h3><mdb-badge :color="$globalBadgeColor" class="w-100 p-2">ID: {{session.id}}</mdb-badge></h3></div>
+          <div class="flex-fill "><h3><mdb-badge :color="session.status_color" class="w-100 p-2">Status: {{session.status}}</mdb-badge></h3></div>
         </div>
         <div>
           <mdb-tbl responsive>
@@ -21,6 +19,14 @@
               <tr>
                 <th :class="$globalThemeColor + ' text-center'">comment</th>
                 <td>{{session.comment}}</td>
+              </tr>
+              <tr>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Created at</th>
+                <td>{{session.created_at}}</td>
+              </tr>
+              <tr>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Updated at</th>
+                <td>{{session.updated_at}}</td>
               </tr>
               <tr>
                 <th :class="$globalThemeColor + ' text-center'">User info</th>
@@ -105,6 +111,8 @@ export default {
         this.session.status_color = data.status == "closed" ? "success" : "warning"
         this.session.created_humain = this.timeSince(new Date(data.created_at), true)
         this.session.duration_humain = data.status == "closed" ? this.timeBetween(new Date(data.created_at), new Date(data.updated_at), true) : "on-going"
+        this.session.created_at = new Date(this.session.created_at).toLocaleString()
+        this.session.updated_at = new Date(this.session.updated_at).toLocaleString()
         var original_str = this.session.host.host_key
         this.session.host.host_key = original_str.substring(0,16)
         this.session.host.host_key += "..."

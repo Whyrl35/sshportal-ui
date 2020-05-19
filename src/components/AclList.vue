@@ -7,8 +7,6 @@
       <mdb-modal-body>
         <div class="d-flex flex-row  pb-3">
           <div class="flex-fill pr-1"><h3><mdb-badge :color="$globalBadgeColor" class="w-100 p-2">ID: {{acl.id}}</mdb-badge></h3></div>
-          <div class="flex-fill pr-1"><h3><mdb-badge :color="$globalBadgeColor" class="w-100 p-2">created: {{acl.created_humain}}</mdb-badge></h3></div>
-          <div class="flex-fill"><h3><mdb-badge :color="$globalBadgeColor" class="w-100 p-2">modified: {{acl.updated_humain}}</mdb-badge></h3></div>
         </div>
         <div>
           <mdb-tbl responsive>
@@ -16,6 +14,14 @@
               <tr >
                 <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Action</th>
                 <td><h3><mdb-badge :color="acl.action_color" class="">{{acl.action}}</mdb-badge></h3></td>
+              </tr>
+              <tr>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Created at</th>
+                <td>{{acl.created_at}}</td>
+              </tr>
+              <tr>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Updated at</th>
+                <td>{{acl.updated_at}}</td>
               </tr>
               <tr >
                 <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Weight</th>
@@ -97,6 +103,8 @@ export default {
         this.acl = response.data
         this.acl.created_humain = this.timeSince(new Date(response.data.created_at), true)
         this.acl.updated_humain = this.timeSince(new Date(response.data.updated_at), true)
+        this.acl.created_at = new Date(this.acl.created_at).toLocaleString()
+        this.acl.updated_at = new Date(this.acl.updated_at).toLocaleString()
         this.acl.action_color = response.data.action == "allow" ? "success" : "danger"
 
         this.$nextTick(function () {

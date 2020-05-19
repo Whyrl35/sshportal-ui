@@ -124,7 +124,9 @@ export default {
             this.tableData.rows[row]["id"]
         )
         .then(response => {
-          this.host_group = response.data;
+            this.host_group = response.data;
+            this.host_group.created_at = new Date(this.host_group.created_at).toLocaleString()
+            this.host_group.updated_at = new Date(this.host_group.updated_at).toLocaleString()
 
           this.$nextTick(function() {
             this.modal = true;
