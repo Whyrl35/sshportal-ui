@@ -8,6 +8,7 @@ import Sessions from '../views/Sessions.vue'
 import Acls from '../views/Acls.vue'
 import Hosts from '../views/Hosts.vue'
 import HostGroups from '../views/HostGroups.vue'
+import UserKeys from '../views/UserKeys.vue'
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,15 @@ Vue.use(VueRouter)
     name: 'login',
     props: { page: 1 },
     component: Login
+  },
+  {
+    path: '/userkeys',
+    name: 'userkeys',
+    component: UserKeys,
+    props: { page: 8},
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/hosts',

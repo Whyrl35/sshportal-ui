@@ -24,7 +24,6 @@ export default new Vuex.Store({
     },
     auth_success(state, parameters){
       state.status = 'success'
-      console.log(parameters)
       state.user = parameters.username
       state.token = parameters.token
       state.refresh = parameters.refresh
