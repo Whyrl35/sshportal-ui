@@ -80,6 +80,7 @@ export default new Vuex.Store({
     refresh_token({commit}){
       return new Promise((resolve, reject) => {
         commit('auth_request')
+        console.log("refreshing access token, with refresh token : " + this.state.refresh)
         axios.defaults.headers.common['Authorization'] = "Bearer " + this.state.refresh
         axios({url: process.env.VUE_APP_API_URL + "/v1/token", method: 'POST' })
         .then(resp => {

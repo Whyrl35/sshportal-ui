@@ -44,6 +44,18 @@ Vue.prototype.$http.interceptors.response.use(undefined, function (err) {
 //-- Mixin, reusable methods
 Vue.mixin({
   methods: {
+    numberFormatter: function(number) {
+      if (Math.abs(number) > 999999999) {
+        return Math.sign(number)*((Math.abs(number)/1000000000).toFixed(1)) + 'B+'
+      }
+      if (Math.abs(number) > 999999) {
+        return Math.sign(number)*((Math.abs(number)/1000000).toFixed(1)) + 'M+'
+      }
+      if (Math.abs(number) > 999) {
+        return Math.sign(number)*((Math.abs(number)/1000).toFixed(1)) + 'K+'
+      }
+      return number
+    },
     timeBetween: function(start, end, short_format) {
       var duration = new Date(end.getTime() - start.getTime());
       var h = duration.getHours() - 1;

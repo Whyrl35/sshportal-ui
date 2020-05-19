@@ -81,12 +81,16 @@
               <mdb-icon icon="ethernet" class="default-color" />
               <div class="data">
                 <h2 class="grey-text">Sessions</h2>
-                <h4>
-                  <strong>{{ sessions }}</strong>
-                </h4>
               </div>
             </div>
             <mdb-card-body>
+                <mdb-container fluid>
+                  <mdb-row class="justify-content-around text-center">
+                    <mdb-col col="sm"><div>TOTALS</div><H2>{{sessions.count}}</h2></mdb-col>
+                    <mdb-col col="sm"><div>ACTIVE</div><H2>{{sessions.active}}</h2></mdb-col>
+                    <mdb-col col="sm"><div>ERRORS</div><H2>{{sessions.errors}}</H2></mdb-col>
+                  </mdb-row>
+                </mdb-container>
             </mdb-card-body>
             <mdb-card-footer class="small default-color lighten-1 text-center white-text border-0 hover">
               <router-link :to="{ name: 'sessions' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
@@ -100,11 +104,17 @@
               <div class="data">
                 <h2 class="grey-text">Events</h2>
                 <h4>
-                  <strong>{{ events }}</strong>
+                  <strong>{{ events.count }}</strong>
                 </h4>
               </div>
             </div>
             <mdb-card-body>
+              <div>
+                LAST 5 EVENTS
+                <div class="text-white elegant-color-dark p-2 m-0 mt-2">
+                  <div v-for="item in events.last_5" :key="item.id"> $ {{ item.action}} {{ item.args && (item.args.args.join(' ')) }}</div>
+                </div>
+              </div>
             </mdb-card-body>
             <mdb-card-footer class="small secondary-color-dark lighten-1 text-center white-text border-0 hover">
               <router-link :to="{ name: 'events', props: { page: 13 } }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
@@ -168,8 +178,15 @@ export default {
             keys: 0,
             hosts: 0,
             acls: 0,
-            sessions: 0,
-            events: 0,
+            sessions: {
+              count: 0,
+              errors: 0,
+              active: 0,
+            },
+            events: {
+              count: 0,
+              last_5: [],
+            },
         }
     },
     mounted() {
@@ -178,8 +195,10 @@ export default {
             this.keys = response.data.keys.count
             this.hosts = response.data.hosts.count
             this.acls = response.data.acls.count
-            this.sessions = response.data.sessions.count
-            this.events = response.data.events.count
+            this.sessions = response.data.sessions
+            this.sessions.count = this.numberFormatter(response.data.sessions.count)
+            this.sessions.errors = this.numberFormatter(response.data.sessions.errors)
+            this.events = response.data.events
         }).catch(err => {
             this.$bvToast.toast(err.message, {
                 title: "Error when getting statistics",
