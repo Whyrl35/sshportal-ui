@@ -55,7 +55,7 @@ Vue.mixin({
         return h > 0 ? h + " hours" : m > 0 ? m + " minutes" : s > 0 ? s + " secondes" : "";
     },
     timeSince: function(date, short_format) {
-      var seconds = Math.floor((new Date() - date) / 1000);
+      var seconds = Math.floor((Date.now() - date) / 1000);
       var interval = Math.floor(seconds / 31536000);
 
       if (interval > 1) {
