@@ -12,7 +12,7 @@ export default new Vuex.Store({
     user: localStorage.getItem('user') || '',
     user_id: localStorage.getItem('user_id') || '',
     user_email: localStorage.getItem('user_email') || '',
-    package_version: JSON.parse(unescape(process.env.PACKAGE_JSON || '%7Bversion%3A0%7D')).version,
+    package_version: require('../../package.json').version,
   },
   mutations: {
     auth_request(state){

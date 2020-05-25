@@ -134,7 +134,7 @@
     <mdb-navbar class="footer-copyright" color="grey lighten-2" position="bottom">
        <mdb-navbar-toggler>
         <mdb-navbar-nav>
-          <span class="navbar-text light-blue-text strong pr-4"><strong>sshportal-ui v0.2</strong></span>
+          <span class="navbar-text light-blue-text strong pr-4"><strong>sshportal-ui v{{ packageVersion}}</strong></span>
           <mdb-nav-item href="https://github.com/Whyrl35/sshportal-ui/"><mdb-icon fab icon="github" size="sm"/>GitHub</mdb-nav-item>
           <mdb-nav-item href="https://github.com/Whyrl35/sshportal-ui/issues"><mdb-icon icon="bug" size="xs"/>Issues</mdb-nav-item>
           <mdb-nav-item href="https://buymeacoffee.com/whyrl"><mdb-icon icon="coffee" size="xs"/> Support</mdb-nav-item>
@@ -309,6 +309,9 @@ export default {
     },
     userName() {
       return this.$store.state.user;
+    },
+    packageVersion() {
+      return this.$store.getters.appVersion;
     },
     userEmail() {
       console.log(this.$store.getters.userEmail)
