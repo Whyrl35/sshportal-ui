@@ -63,12 +63,16 @@
               <mdb-icon icon="shield-alt" class="red accent-2" />
               <div class="data">
                 <h2 class="grey-text">Acls</h2>
-                <h4>
-                  <strong>{{ acls }}</strong>
-                </h4>
               </div>
             </div>
             <mdb-card-body>
+                <mdb-container fluid>
+                  <mdb-row class="justify-content-around text-center">
+                    <mdb-col col="sm"><div>TOTAL</div><H2>{{acls.count}}</h2></mdb-col>
+                    <mdb-col col="sm"><div>ALLOW</div><H2>{{acls.allow}}</h2></mdb-col>
+                    <mdb-col col="sm"><div>DENY</div><H2>{{acls.deny}}</H2></mdb-col>
+                  </mdb-row>
+                </mdb-container>
             </mdb-card-body>
             <mdb-card-footer class="small red accent-2 text-center white-text border-0 hover">
               <router-link :to="{ name: 'acls' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
@@ -112,7 +116,7 @@
               <div>
                 LAST 5 EVENTS
                 <div class="text-white elegant-color-dark p-2 m-0 mt-2">
-                  <div v-for="item in events.last_5" :key="item.id"> $ {{ item.action}} {{ item.args && (item.args.args.join(' ')) }}</div>
+                  <div v-for="item in events.last_5" :key="item.id"> {{ item.action}} {{ item.args && (item.args.args.join(' ')) }}</div>
                 </div>
               </div>
             </mdb-card-body>
@@ -177,7 +181,11 @@ export default {
             users: 0,
             keys: 0,
             hosts: 0,
-            acls: 0,
+            acls: {
+              count: 0,
+              allow: 0,
+              deny: 0,
+            },
             sessions: {
               count: 0,
               errors: 0,
@@ -194,7 +202,8 @@ export default {
             this.users = response.data.users.count
             this.keys = response.data.keys.count
             this.hosts = response.data.hosts.count
-            this.acls = response.data.acls.count
+            this.acls = response.data.acls
+            this.acls.deny = this.acls.count - this.acls.allow
             this.sessions = response.data.sessions
             this.sessions.count = this.numberFormatter(response.data.sessions.count)
             this.sessions.errors = this.numberFormatter(response.data.sessions.errors)
