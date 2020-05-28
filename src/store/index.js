@@ -33,7 +33,6 @@ export default new Vuex.Store({
     },
     auth_error(state){
       state.status = 'error'
-      state.refresh = ''
       state.token = ''
       state.user = ''
       state.user_id = -1
@@ -99,9 +98,7 @@ export default new Vuex.Store({
         .catch(err => {
           commit('auth_error')
           localStorage.removeItem('token')
-          localStorage.removeItem('refresh')
           this.state.token = ''
-          this.state.refresh = ''
           reject(err)
         })
       })
