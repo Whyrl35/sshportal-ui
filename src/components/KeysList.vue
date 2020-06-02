@@ -30,8 +30,41 @@
                 <td>{{key.created_at}}</td>
               </tr>
               <tr>
-                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Updated at</th>
-                <td>{{key.updated_at}}</td>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Type</th>
+                <td>{{key.type}}</td>
+              </tr>
+              <tr>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Length</th>
+                <td>{{key.length}}</td>
+              </tr>
+              <tr>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Fingerprint</th>
+                <td>{{key.fingerprint}}</td>
+              </tr>
+              <tr>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Private key</th>
+                <td>
+                  <pre style="overflow:auto;text-overflow:ellipsis;white-space:pre-wrap;width:100%">{{ key.priv_key }}</pre>
+                </td>
+              </tr>
+              <tr>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Public key</th>
+                <td>
+                  <pre style="overflow:auto;text-overflow:ellipsis;white-space:pre-wrap;width:100%">{{ key.pub_key }}</pre>
+                </td>
+              </tr>
+              <tr>
+                <th :class="$globalThemeColor + ' text-center'" style="width: 100px">Hosts</th>
+                <td>
+                    <div style="max-height:150px; overflow:auto;">
+                        <div v-for="item in key.hosts" :key="item.id">
+                            <a href="#">
+                                {{ item.name }}
+                                <mdb-icon icon="external-link-alt" />
+                            </a>
+                        </div>
+                    </div>
+                </td>
               </tr>
             </mdb-tbl-body>
           </mdb-tbl>
@@ -45,7 +78,7 @@
       <section id="events" class="p-5">
         <mdb-row>
           <mdb-col xl="12" lg="12" md="12" class="mb-r">
-            <h1>HostGroups list</h1>
+            <h1>Keys list</h1>
             <small>click on row to view details</small>
           </mdb-col>
           <mdb-col xl="12" lg="12" md="12" class="mt-4">
@@ -95,7 +128,7 @@ export default {
       this.$http
         .get(
           process.env.VUE_APP_API_URL +
-            "/v1/userkey/" +
+            "/v1/key/" +
             this.tableData.rows[row]["id"]
         )
         .then(response => {
@@ -115,7 +148,7 @@ export default {
   },
   beforeMount() {
     this.$http
-      .get(process.env.VUE_APP_API_URL + "/v1/userkeys")
+      .get(process.env.VUE_APP_API_URL + "/v1/keys")
       .then(response => {
         let data = response.data.reverse();
         this.tableData.columns.push({ label: "ID", field: "id", sort: true });
@@ -136,7 +169,7 @@ export default {
         });
         this.tableData.columns.push({
           label: "HOSTS",
-          field: "hosts",
+          field: "host_count",
           sort: true
         });
         this.tableData.columns.push({
@@ -156,6 +189,7 @@ export default {
         });
 
         for (const item of data) {
+          item["host_count"] = item["hosts"].length
           item["updated_at"] = this.timeSince(new Date(item["updated_at"]));
           item["created_at"] = this.timeSince(new Date(item["created_at"]));
           this.tableData.rows.push(item);
