@@ -35,7 +35,7 @@
             <mdb-card-body>
             </mdb-card-body>
             <mdb-card-footer class="small warning-color text-center white-text border-0 hover">
-              <router-link :to="{ name: 'home' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
+              <router-link :to="{ name: 'keys' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
             </mdb-card-footer>
           </mdb-card>
         </mdb-col>
@@ -53,7 +53,7 @@
             <mdb-card-body>
             </mdb-card-body>
             <mdb-card-footer class="small light-blue lighten-1 text-center white-text border-0 hover">
-              <router-link :to="{ name: 'home' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
+              <router-link :to="{ name: 'hosts' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
             </mdb-card-footer>
           </mdb-card>
         </mdb-col>
@@ -90,7 +90,7 @@
             <mdb-card-body>
                 <mdb-container fluid>
                   <mdb-row class="justify-content-around text-center">
-                    <mdb-col col="sm"><div>TOTALS</div><H2>{{sessions.count}}</h2></mdb-col>
+                    <mdb-col col="sm"><div>TOTAL</div><H2>{{sessions.count}}</h2></mdb-col>
                     <mdb-col col="sm"><div>ACTIVE</div><H2>{{sessions.active}}</h2></mdb-col>
                     <mdb-col col="sm"><div>ERRORS</div><H2>{{sessions.errors}}</H2></mdb-col>
                   </mdb-row>
