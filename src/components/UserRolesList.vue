@@ -54,7 +54,7 @@
       <section id="events" class="p-5">
         <mdb-row>
           <mdb-col xl="12" lg="12" md="12" class="mb-r">
-            <h1>UserGroups list</h1>
+            <h1>UserRoles list</h1>
             <small>click on row to view details</small>
           </mdb-col>
           <mdb-col xl="12" lg="12" md="12" class="mt-4">
