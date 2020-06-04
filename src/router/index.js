@@ -10,6 +10,9 @@ import Hosts from '../views/Hosts.vue'
 import HostGroups from '../views/HostGroups.vue'
 import UserKeys from '../views/UserKeys.vue'
 import Keys from '../views/Keys.vue'
+import Users from '../views/Users.vue'
+import UserGroups from '../views/UserGroups.vue'
+import UserRoles from '../views/UserRoles.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +31,33 @@ Vue.use(VueRouter)
     name: 'login',
     props: { page: 1 },
     component: Login
+  },
+  {
+    path: '/users',
+    name: 'users',
+    component: Users,
+    props: { page: 4},
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/groups',
+    name: 'groups',
+    component: UserGroups,
+    props: { page: 5},
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/roles',
+    name: 'roles',
+    component: UserRoles,
+    props: { page: 6},
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/keys',

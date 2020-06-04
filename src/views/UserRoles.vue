@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-    <KeysList/>
+    <UserRolesList/>
   </div>
 </template>
 <script>
-  import KeysList from '@/components/UserKeysList.vue';
+  import UserRolesList from '@/components/UserRolesList.vue';
   export default {
-    name: 'userkey',
+    name: 'userroleslist',
     components: {
-      KeysList,
+      UserRolesList,
     },
     props: ['page']
   }
