@@ -10,7 +10,7 @@ import Hosts from '../views/Hosts.vue'
 import HostGroups from '../views/HostGroups.vue'
 import UserKeys from '../views/UserKeys.vue'
 import Keys from '../views/Keys.vue'
-import Users from '../views/Users2.vue'
+import Users from '../views/Users.vue'
 import UserGroups from '../views/UserGroups.vue'
 import UserRoles from '../views/UserRoles.vue'
 
