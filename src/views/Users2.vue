@@ -45,14 +45,14 @@ export default {
               { title: "Name", value: response.data.name, color: this.$globalBadgeColor },
             ];
             this.modalInfo.data = [
-              { title: 'Email', value: response.data.email, links: false },
-              { title: 'Roles', value: response.data.roles.map(x => x.name), links: true },
-              { title: 'Keys', value: response.data.keys.map(x => "key: " + x.id), links: true },
-              { title: 'Groups', value: response.data.groups.map(x => x.name), links: true },
-              { title: 'Invite token', value: response.data.invite_token, links: false },
-              { title: 'Created', value: new Date(response.data.created_at).toLocaleString(), links: false },
-              { title: 'Updated', value: new Date(response.data.updated_at).toLocaleString(), links: false },
-              { title: 'Comment', value: response.data.comment, links: false },
+              { title: 'Email', value: response.data.email, links: undefined },
+              { title: 'Roles', value: undefined, links: response.data.roles.map(x => x.name) },
+              { title: 'Keys', value: undefined, links: response.data.keys.map(x => "key: " + x.id) },
+              { title: 'Groups', value: undefined, links: response.data.groups.map(x => x.name) },
+              { title: 'Invite token', value: response.data.invite_token, links: undefined },
+              { title: 'Created', value: new Date(response.data.created_at).toLocaleString(), links: undefined },
+              { title: 'Updated', value: new Date(response.data.updated_at).toLocaleString(), links: undefined },
+              { title: 'Comment', value: response.data.comment, links: undefined },
             ];
           this.$nextTick(function() {
             this.showModal = true;

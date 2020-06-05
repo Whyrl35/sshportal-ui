@@ -18,7 +18,17 @@
             <mdb-tbl-body>
               <tr v-for="item in listInfo.data" :key="item.title">
                 <th :class="$globalThemeColor + ' text-center'" style="width: 100px">{{ item.title }}</th>
-                <td>{{item.value}}</td>
+                <td v-if="item.links">
+                  <div style="max-height:150px; overflow:auto;">
+                    <div v-for="link in item.links" :key="link">
+                        <a href="#">
+                            {{ link }}
+                            <mdb-icon icon="external-link-alt" />
+                        </a>
+                    </div>
+                  </div>                  
+                </td>
+                <td v-else>{{item.value}}</td>
               </tr>
             </mdb-tbl-body>
           </mdb-tbl>
