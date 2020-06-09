@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ItemListModal v-bind:listInfo="modalInfo" v-bind:showModal="showModal" v-on:update-show="showModal=$event"/>
+    <ItemListModal v-bind:title="title" v-bind:listInfo="modalInfo" v-bind:showModal="showModal" v-on:update-show="showModal=$event"/>
     <ItemList v-bind:tableData="tableData" v-bind:title="title" v-on:details="viewDetails($event)"/>
   </div>
 </template>
@@ -39,20 +39,19 @@ export default {
           { params: {'name': this.tableData.rows[row]["name"]} }
         )
         .then(response => {
-            console.log(response)
             this.modalInfo.badges = [
               { title: "ID", value: response.data.id, color: this.$globalBadgeColor },
               { title: "Name", value: response.data.name, color: this.$globalBadgeColor },
             ];
             this.modalInfo.data = [
-              { title: 'Email', value: response.data.email, links: undefined },
-              { title: 'Roles', value: undefined, links: response.data.roles.map(x => x.name) },
-              { title: 'Keys', value: undefined, links: response.data.keys.map(x => "key: " + x.id) },
-              { title: 'Groups', value: undefined, links: response.data.groups.map(x => x.name) },
-              { title: 'Invite token', value: response.data.invite_token, links: undefined },
-              { title: 'Created', value: new Date(response.data.created_at).toLocaleString(), links: undefined },
-              { title: 'Updated', value: new Date(response.data.updated_at).toLocaleString(), links: undefined },
-              { title: 'Comment', value: response.data.comment, links: undefined },
+              { title: 'Email', value: response.data.email },
+              { title: 'Roles', links: response.data.roles.map(x => x.name) },
+              { title: 'Keys', links: response.data.keys.map(x => "key: " + x.id) },
+              { title: 'Groups', links: response.data.groups.map(x => x.name) },
+              { title: 'Invite token', value: response.data.invite_token },
+              { title: 'Created', value: new Date(response.data.created_at).toLocaleString() },
+              { title: 'Updated', value: new Date(response.data.updated_at).toLocaleString() },
+              { title: 'Comment', value: response.data.comment },
             ];
           this.$nextTick(function() {
             this.showModal = true;

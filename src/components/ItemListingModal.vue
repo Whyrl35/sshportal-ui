@@ -3,7 +3,7 @@
   <div>
     <mdb-modal size="lg" :show="showModal" @close="$emit('update-show', false)" info>
       <mdb-modal-header :color="$globalThemeColorDark">
-        <mdb-modal-title>User details</mdb-modal-title>
+        <mdb-modal-title>{{ title }} details</mdb-modal-title>
       </mdb-modal-header>
       <mdb-modal-body>
         <div class="d-flex flex-row pb-3">
@@ -26,7 +26,10 @@
                             <mdb-icon icon="external-link-alt" />
                         </a>
                     </div>
-                  </div>                  
+                  </div>
+                </td>
+                <td v-else-if="item.keyblock">
+                  <pre style="overflow:auto;text-overflow:ellipsis;white-space:pre-wrap;width:100%;max-height:150px">{{ item.keyblock }}</pre>
                 </td>
                 <td v-else>{{item.value}}</td>
               </tr>
@@ -45,6 +48,7 @@ export default {
   props: {
     listInfo: Object,
     showModal: Boolean,
+    title: String,
   },
   data() {
     return {
