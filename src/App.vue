@@ -66,14 +66,14 @@
             <mdb-list-group-item
               :action="true"
               :class="activeItem === 7 && 'active'">
-              <mdb-icon icon="key" class="w-25" size="lg"/><span class="text-uppercase small">Keys</span>
+              <mdb-icon icon="key" class="w-25" size="lg"/><span class="text-uppercase small">Egress</span>
             </mdb-list-group-item>
           </router-link>
           <router-link to="/userkeys" @click.native="activeItem = 8">
             <mdb-list-group-item
               :action="true"
               :class="activeItem === 8 && 'active'">
-              <mdb-icon icon="user-lock" class="w-25" size=""/><span class="text-uppercase small">User Keys</span>
+              <mdb-icon icon="user-lock" class="w-25" size=""/><span class="text-uppercase small">Ingress</span>
             </mdb-list-group-item>
           </router-link>
           <mdb-list-group-item class="disabled pt-4 font-weight-bold small text-uppercase">Hosts</mdb-list-group-item>

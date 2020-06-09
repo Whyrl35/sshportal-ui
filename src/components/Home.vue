@@ -9,12 +9,16 @@
               <mdb-icon icon="user" class="primary-color" />
               <div class="data">
                 <h2 class="grey-text">Users</h2>
-                <h4>
-                  <strong>{{ users }}</strong>
-                </h4>
               </div>
             </div>
             <mdb-card-body>
+              <mdb-container fluid>
+                <mdb-row class="justify-content-around text-center">
+                  <mdb-col col="sm"><div>Users</div><H2>{{users.count}}</h2></mdb-col>
+                  <mdb-col col="sm"><div>Groups</div><H2>{{usergroups.count}}</h2></mdb-col>
+                  <mdb-col col="sm"><div>Roles</div><H2>{{userroles.count}}</H2></mdb-col>
+                </mdb-row>
+              </mdb-container>
             </mdb-card-body>
             <mdb-card-footer class="small primary-color text-center white-text border-0 hover">
               <router-link :to="{ name: 'users' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
@@ -27,12 +31,15 @@
               <mdb-icon icon="key" class="warning-color" />
               <div class="data">
                 <h2 class="grey-text">Keys</h2>
-                <h4>
-                  <strong>{{ keys }}</strong>
-                </h4>
               </div>
             </div>
             <mdb-card-body>
+              <mdb-container fluid>
+                <mdb-row class="justify-content-around text-center">
+                  <mdb-col col="sm"><div>Ingress</div><H2>{{userkeys.count}}</h2></mdb-col>
+                  <mdb-col col="sm"><div>Egress</div><H2>{{keys.count}}</h2></mdb-col>
+                </mdb-row>
+              </mdb-container>
             </mdb-card-body>
             <mdb-card-footer class="small warning-color text-center white-text border-0 hover">
               <router-link :to="{ name: 'keys' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
@@ -45,12 +52,16 @@
               <mdb-icon icon="server" class="light-blue lighten-1" />
               <div class="data">
                 <h2 class="grey-text">Hosts</h2>
-                <h4>
-                  <strong>{{ hosts }}</strong>
-                </h4>
               </div>
             </div>
             <mdb-card-body>
+                <mdb-container fluid>
+                  <mdb-row class="justify-content-around text-center">
+                    <mdb-col col="sm"><div>Hosts</div><H2>{{hosts.count}}</h2></mdb-col>
+                    <mdb-col col="sm"><div>Keys</div><H2>{{hosts.keys}}</h2></mdb-col>
+                    <mdb-col col="sm"><div>Groups</div><H2>{{hostgroups.count}}</H2></mdb-col>
+                  </mdb-row>
+                </mdb-container>
             </mdb-card-body>
             <mdb-card-footer class="small light-blue lighten-1 text-center white-text border-0 hover">
               <router-link :to="{ name: 'hosts' }" class="white-text">More info <mdb-icon icon="arrow-circle-right pl-2"/></router-link>
@@ -68,9 +79,9 @@
             <mdb-card-body>
                 <mdb-container fluid>
                   <mdb-row class="justify-content-around text-center">
-                    <mdb-col col="sm"><div>TOTAL</div><H2>{{acls.count}}</h2></mdb-col>
-                    <mdb-col col="sm"><div>ALLOW</div><H2>{{acls.allow}}</h2></mdb-col>
-                    <mdb-col col="sm"><div>DENY</div><H2>{{acls.deny}}</H2></mdb-col>
+                    <mdb-col col="sm"><div>Total</div><H2>{{acls.count}}</h2></mdb-col>
+                    <mdb-col col="sm"><div>Allow</div><H2>{{acls.allow}}</h2></mdb-col>
+                    <mdb-col col="sm"><div>Deny</div><H2>{{acls.deny}}</H2></mdb-col>
                   </mdb-row>
                 </mdb-container>
             </mdb-card-body>
@@ -90,9 +101,9 @@
             <mdb-card-body>
                 <mdb-container fluid>
                   <mdb-row class="justify-content-around text-center">
-                    <mdb-col col="sm"><div>TOTAL</div><H2>{{sessions.count}}</h2></mdb-col>
-                    <mdb-col col="sm"><div>ACTIVE</div><H2>{{sessions.active}}</h2></mdb-col>
-                    <mdb-col col="sm"><div>ERRORS</div><H2>{{sessions.errors}}</H2></mdb-col>
+                    <mdb-col col="sm"><div>Total</div><H2>{{sessions.count}}</h2></mdb-col>
+                    <mdb-col col="sm"><div>Active</div><H2>{{sessions.active}}</h2></mdb-col>
+                    <mdb-col col="sm"><div>Errors</div><H2>{{sessions.errors}}</H2></mdb-col>
                   </mdb-row>
                 </mdb-container>
             </mdb-card-body>
@@ -199,9 +210,13 @@ export default {
     },
     mounted() {
         this.$http.get(process.env.VUE_APP_API_URL + "/v1/statistics").then(response => {
-            this.users = response.data.users.count
-            this.keys = response.data.keys.count
-            this.hosts = response.data.hosts.count
+            this.users = response.data.users
+            this.usergroups = response.data.usergroups
+            this.userroles = response.data.userroles
+            this.keys = response.data.keys
+            this.userkeys = response.data.userkeys
+            this.hosts = response.data.hosts
+            this.hostgroups = response.data.hostgroups
             this.acls = response.data.acls
             this.acls.deny = this.acls.count - this.acls.allow
             this.sessions = response.data.sessions
