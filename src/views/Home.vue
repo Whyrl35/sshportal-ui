@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-    <Home/>
+    <Dashboard/>
   </div>
 </template>
 <script>
-  import Home from '@/components/Home.vue';
+  import Dashboard from '@/components/Dashboard.vue';
   export default {
     name: 'home',
     components: {
-      Home,
+      Dashboard,
     },
     props: ['page']
   }
