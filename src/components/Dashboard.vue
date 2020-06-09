@@ -189,9 +189,27 @@
 export default {
     data() {
         return {
-            users: 0,
-            keys: 0,
-            hosts: 0,
+            users: {
+              count: 0,
+            },
+            usergroups: {
+              count: 0,
+            },
+            userroles: {
+              count: 0,
+            },
+            keys: {
+              count: 0,
+            },
+            userkeys: {
+              count: 0,
+            },
+            hosts: {
+              count: 0,
+            },
+            hostgroups: {
+              count: 0,
+            },
             acls: {
               count: 0,
               allow: 0,

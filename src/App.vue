@@ -314,7 +314,6 @@ export default {
       return this.$store.getters.appVersion;
     },
     userEmail() {
-      console.log(this.$store.getters.userEmail)
       return this.$store.getters.userEmail;
     }
   }
