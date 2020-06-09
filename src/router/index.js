@@ -3,6 +3,10 @@ import VueRouter from 'vue-router'
 import store from '../store'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
+import Users from '../views/Users.vue'
+import UserGroups from '../views/UserGroups.vue'
+import UserRoles from '../views/UserRoles.vue'
+
 import Events from '../views/Events.vue'
 import Sessions from '../views/Sessions.vue'
 import Acls from '../views/Acls.vue'
@@ -10,9 +14,6 @@ import Hosts from '../views/Hosts.vue'
 import HostGroups from '../views/HostGroups.vue'
 import UserKeys from '../views/UserKeys.vue'
 import Keys from '../views/Keys.vue'
-import Users from '../views/Users.vue'
-import UserGroups from '../views/UserGroups.vue'
-import UserRoles from '../views/UserRoles.vue'
 
 Vue.use(VueRouter)
 
